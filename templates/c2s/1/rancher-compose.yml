@@ -23,13 +23,13 @@ catalog:
       description: "c2s Docker image tag"
       label: "c2s Docker image tag:"
       required: true
-      default: "alpine"
+      default: "latest"
       type: "string"
     - variable: "nearbyservices_docker_image_tag"
       description: "nearby-services-api Docker image tag"
       label: "nearby-services-api Docker image tag:"
       required: true
-      default: "alpine"
+      default: "latest"
       type: "string"
     - variable: "splunk_hec_endpoint"
       description: "Splunk HTTP Event Collector URL"
