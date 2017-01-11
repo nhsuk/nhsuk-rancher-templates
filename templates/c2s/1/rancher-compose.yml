@@ -1,11 +1,11 @@
 catalog:
   name: nhsuk_c2s
-  version: v2
+  version: 1.0.1
   description: |
     (Testing) Connecting to Services
   minimum_rancher_version: v0.59.0
   maintainer: "Adam Graves <adam.graves@nhs.net>"
-  uuid: nhsuk_c2s-0
+  upgrade_from: 1.0.0
   questions:
     - variable: "traefik_alias"
       description: "alias for hostname, (e.g. 'test' will make the url 'test.DOMAIN')"
