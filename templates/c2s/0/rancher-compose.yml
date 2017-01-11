@@ -10,7 +10,6 @@ catalog:
       description: "alias for hostname, (e.g. 'test' will make the url 'test.DOMAIN')"
       label: "Domain alias:"
       required: true
-      default: "test"
       type: "string"
     - variable: "traefik_domain"
       description: "domain to listen on"

@@ -15,7 +15,6 @@ services:
     labels:
       traefik.enable: true
       traefik.domain: ${traefik_domain}
-      traefik.domain: c2s.nhschoices.net
       traefik.port: 3000
       traefik.alias: ${traefik_alias}
       io.rancher.container.pull_image: always
