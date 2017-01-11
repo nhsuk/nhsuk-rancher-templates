@@ -1,0 +1,8 @@
+name: traefik
+description: |
+  Dynamic Traefik loadbalancer
+version: 0
+category: nhsuk beta load-balancer
+maintainer: Adam Graves
+license: whl
+projectURL: https://github.com/adamgraves-choices/c2s-rancher-template
