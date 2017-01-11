@@ -1,7 +1,7 @@
 name: c2s
 description: |
   Full stack deployment of c2s
-version: 0
+version: v1
 category: nhsuk beta
 maintainer: Adam Graves
 license: whl
