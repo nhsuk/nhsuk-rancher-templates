@@ -6,6 +6,17 @@ catalog:
   minimum_rancher_version: v0.59.0
   maintainer: "Adam Graves <adam.graves@nhs.net>"
   questions:
+    - variable: "traefik_alias"
+      description: "alias for hostname, (e.g. 'test' will make the url 'test.DOMAIN')"
+      label: "Domain alias:"
+      required: true
+      type: "string"
+    - variable: "traefik_domain"
+      description: "domain to listen on"
+      label: "Traefik domain:"
+      required: true
+      default: "c2s.nhschoices.net"
+      type: "string"
     - variable: "c2s_docker_image_tag"
       description: "c2s Docker image tag"
       label: "c2s Docker image tag:"
