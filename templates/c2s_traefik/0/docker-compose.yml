@@ -2,7 +2,7 @@ version: '2'
 
 services:
 
-  connecting-to-services:
+  c2s-frontend:
     image: "nhsuk/connecting-to-services:${c2s_docker_image_tag}"
     environment:
       NODE_ENV: production
@@ -24,15 +24,9 @@ services:
   nearby-services-api:
     image: "nhsuk/nearby-services-api:${nearbyservices_docker_image_tag}"
     links:
-    - mongo:mongo
     environment:
       NODE_ENV: production
       SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
       SPLUNK_HEC_TOKEN: ${splunk_hec_token}
-      DB_PRIMARY_KEY: ${documentdb_key}
     labels:
       io.rancher.container.pull_image: always
-
-  mongo:
-    image: mongo
-    command: -auth

@@ -1,6 +1,6 @@
-name: Connecting to Service (w/ Traefik Config)
+name: c2s_traefik
 description: |
-  Full stack deployment of c2s
+  Full stack deployment of C2S (with traefik)
 version: v1
 category: nhsuk beta
 maintainer: Adam Graves

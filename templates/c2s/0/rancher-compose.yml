@@ -2,7 +2,7 @@ catalog:
   name: nhsuk_c2s
   version: 1.0.0
   description: |
-    (Testing) Connecting to Services
+    Connecting to Services (Using Rancher LB)
   minimum_rancher_version: v0.59.0
   maintainer: "Adam Graves <adam.graves@nhs.net>"
   questions:
@@ -29,11 +29,6 @@ catalog:
       label: "Splunk HTTP Event Collector Token:"
       required: true
       type: "string"
-    - variable: "documentdb_key"
-      description: "Azure DocumentDB Key"
-      label: "Azure DocumentDB Key:"
-      required: true
-      type: "string"
     - variable: "hotjar_id"
       description: "HotJar Tracking ID"
       label: "HotJar Tracking ID:"
@@ -53,11 +48,8 @@ catalog:
       default: "dcs222rfg0jh2hpdaqwc2gmki_9r4q"
       type: "string"
 
-mongo:
-  scale: 1
-  start_on_create: true
-connecting-to-services:
-  scale: 1
+c2s-frontend:
+  scale: 2
   start_on_create: true
   health_check:
     response_timeout: 5000
@@ -69,8 +61,9 @@ connecting-to-services:
     strategy: recreate
     request_line: GET "/finders/find-help" "HTTP/1.0"
     reinitializing_timeout: 60000
+
 nearby-services-api:
-  scale: 1
+  scale: 2
   health_check:
     response_timeout: 5000
     healthy_threshold: 2
@@ -82,3 +75,30 @@ nearby-services-api:
     request_line: GET "/nearby?latitude=53.800755&longitude=-1.549077" "HTTP/1.0"
     reinitializing_timeout: 60000
   start_on_create: true
+
+lb:
+  start_on_create: true
+  lb_config:
+    certs: []
+    default_cert: production_c2s_self_signed
+    port_rules:
+    - hostname: ''
+      path: ''
+      priority: 1
+      protocol: http
+      service: c2s-frontend
+      source_port: 80
+      target_port: 3000
+    - hostname: ''
+      priority: 2
+      protocol: https
+      service: c2s-frontend
+      source_port: 443
+      target_port: 3000
+  health_check:
+    healthy_threshold: 2
+    response_timeout: 2000
+    port: 42
+    unhealthy_threshold: 3
+    interval: 2000
+    strategy: recreate
