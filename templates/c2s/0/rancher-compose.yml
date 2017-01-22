@@ -65,12 +65,12 @@ c2s-frontend:
 nearby-services-api:
   scale: 2
   health_check:
-    response_timeout: 5000
+    response_timeout: 60000
     healthy_threshold: 2
     port: 3001
     unhealthy_threshold: 3
     initializing_timeout: 60000
-    interval: 5000
+    interval: 20000
     strategy: recreate
     request_line: GET "/nearby?latitude=53.800755&longitude=-1.549077" "HTTP/1.0"
     reinitializing_timeout: 60000
