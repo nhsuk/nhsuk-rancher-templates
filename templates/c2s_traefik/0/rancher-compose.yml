@@ -11,11 +11,11 @@ catalog:
       label: "Domain alias (for c2s frontend):"
       required: true
       type: "string"
-      - variable: "nearbyservices_traefik_alias"
-        description: "alias for hostname, (e.g. 'test' will make the url 'test.DOMAIN')"
-        label: "Domain alias (for nearby-services):"
-        required: true
-        type: "string"
+    - variable: "nearbyservices_traefik_alias"
+      description: "alias for hostname, (e.g. 'test' will make the url 'test.DOMAIN')"
+      label: "Domain alias (for nearby-services):"
+      required: true
+      type: "string"
     - variable: "traefik_domain"
       description: "domain to listen on"
       label: "Traefik domain:"
