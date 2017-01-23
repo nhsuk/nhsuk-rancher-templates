@@ -16,7 +16,7 @@ services:
       traefik.enable: true
       traefik.domain: ${traefik_domain}
       traefik.port: 3000
-      traefik.alias: ${traefik_alias}
+      traefik.alias: ${c2s_traefik_alias}
       io.rancher.container.pull_image: always
     links:
     - nearby-services-api:nearby-services-api
@@ -28,4 +28,8 @@ services:
       SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
       SPLUNK_HEC_TOKEN: ${splunk_hec_token}
     labels:
+      traefik.enable: true
+      traefik.domain: ${traefik_domain}
+      traefik.port: 3001
+      traefik.alias: ${nearbyservices_traefik_alias}
       io.rancher.container.pull_image: always
