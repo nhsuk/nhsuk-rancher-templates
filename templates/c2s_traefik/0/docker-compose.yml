@@ -13,10 +13,9 @@ services:
       WEBTRENDS_ANALYTICS_TRACKING_ID: ${webtrends_id}
       API_BASE_URL: 'http://nearby-services-api:3001'
     labels:
-      traefik.enable: true
+      traefik.enable: stack
       traefik.domain: ${traefik_domain}
       traefik.port: 3000
-      traefik.alias: ${c2s_traefik_alias}
       io.rancher.container.pull_image: always
     links:
     - nearby-services-api:nearby-services-api
