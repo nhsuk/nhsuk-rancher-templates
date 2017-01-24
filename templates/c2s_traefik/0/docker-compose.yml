@@ -30,5 +30,4 @@ services:
       traefik.enable: true
       traefik.domain: ${traefik_domain}
       traefik.port: 3001
-      traefik.alias: ${nearbyservices_traefik_alias}
       io.rancher.container.pull_image: always
