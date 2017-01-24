@@ -6,16 +6,6 @@ catalog:
   minimum_rancher_version: v0.59.0
   maintainer: "Adam Graves <adam.graves@nhs.net>"
   questions:
-    - variable: "c2s_traefik_alias"
-      description: "alias for hostname, (e.g. 'test' will make the url 'test.DOMAIN')"
-      label: "Domain alias (for c2s frontend):"
-      required: true
-      type: "string"
-    - variable: "nearbyservices_traefik_alias"
-      description: "alias for hostname, (e.g. 'test' will make the url 'test.DOMAIN')"
-      label: "Domain alias (for nearby-services):"
-      required: true
-      type: "string"
     - variable: "traefik_domain"
       description: "domain to listen on"
       label: "Traefik domain:"
@@ -65,7 +55,7 @@ catalog:
       type: "string"
 
 c2s-frontend:
-  scale: 2
+  scale: 1
   start_on_create: true
   health_check:
     response_timeout: 5000
@@ -79,7 +69,7 @@ c2s-frontend:
     reinitializing_timeout: 60000
 
 nearby-services-api:
-  scale: 2
+  scale: 1
   health_check:
     response_timeout: 5000
     healthy_threshold: 2
