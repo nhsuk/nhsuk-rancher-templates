@@ -3,23 +3,23 @@ version: '2'
 services:
 
   c2s-frontend:
-    image: nhsuk/connecting-to-services:${FE_TAG:-master}
+    image: nhsuk/connecting-to-services:${FE_TAG}
     ports:
     - 3000:3000/tcp
     environment:
-      WEBTRENDS_ANALYTICS_TRACKING_ID: dcs222rfg0jh2hpdaqwc2gmki_9r4q
-      NODE_ENV: production
+      WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID}
+      NODE_ENV: ${NODE_ENV}
       API_BASE_URL: http://nearby-services-api:3001
-      GOOGLE_ANALYTICS_TRACKING_ID: UA-67365892-5
-      HOTJAR_ANALYTICS_TRACKING_ID: '265857'
+      GOOGLE_ANALYTICS_TRACKING_ID: ${GOOGLE_ANALYTICS_TRACKING_ID}
+      HOTJAR_ANALYTICS_TRACKING_ID: ${HOTJAR_ANALYTICS_TRACKING_ID}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
-      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT:-https://splunk-collector.cloudapp.net:8088}
+      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
     links:
     - nearby-services-api:nearby-services-api
 
   nearby-services-api:
-    image: nhsuk/nearby-services-api:${API_TAG:-master}
+    image: nhsuk/nearby-services-api:${API_TAG}
     environment:
-      NODE_ENV: production
-      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT:-https://splunk-collector.cloudapp.net:8088}
+      NODE_ENV: ${NODE_ENV}
+      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
