@@ -86,9 +86,9 @@ lb:
       path: ''
       priority: 1
       protocol: http
-      service: c2s-frontend
+      service: http-https-redirect
       source_port: 80
-      target_port: 3000
+      target_port: 80
     - hostname: ''
       priority: 2
       protocol: https
