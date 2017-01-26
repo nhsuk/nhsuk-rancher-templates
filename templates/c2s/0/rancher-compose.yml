@@ -80,7 +80,7 @@ lb:
   start_on_create: true
   lb_config:
     certs: []
-    default_cert: production_c2s_self_signed
+    default_cert: c2s
     port_rules:
     - hostname: ''
       path: ''
