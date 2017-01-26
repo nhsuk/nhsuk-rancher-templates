@@ -3,9 +3,14 @@ version: '2'
 services:
 
   c2s-frontend:
-    image: nhsuk/connecting-to-services:${FE_TAG}
+    build:
+      context: connecting-to-services
+      args:
+        NODE_ENV: ${NODE_ENV}
+    volumes:
+      - /Users/#{username}/NHS.UK/connecting-to-services:/code
     ports:
-    - 3000:3000/tcp
+      - 3000:3000
     environment:
       WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID}
       NODE_ENV: ${NODE_ENV}
@@ -15,11 +20,20 @@ services:
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
     links:
-    - nearby-services-api:nearby-services-api
+      - nearby-services-api:nearby-services-api
+    command: sh -c 'npm install ; npm run watch-dev-docker'
 
   nearby-services-api:
-    image: nhsuk/nearby-services-api:${API_TAG}
+    build:
+      context: nearby-services-api
+      args:
+        NODE_ENV: ${NODE_ENV}
+    volumes:
+      - /Users/#{username}/NHS.UK/nearby-services-api:/code
+    ports:
+      - 3001:3001/
     environment:
       NODE_ENV: ${NODE_ENV}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+    command: sh -c 'npm install ; npm run watch-dev-docker'
