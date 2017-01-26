@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+
+  c2s-frontend:
+    build:
+      context: connecting-to-services
+      args:
+        NODE_ENV: ${NODE_ENV}
+    volumes:
+      - /Users/#{username}/NHS.UK/connecting-to-services:/code
+    ports:
+      - 3000:3000
+    environment:
+      WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID}
+      NODE_ENV: ${NODE_ENV}
+      API_BASE_URL: http://nearby-services-api:3001
+      GOOGLE_ANALYTICS_TRACKING_ID: ${GOOGLE_ANALYTICS_TRACKING_ID}
+      HOTJAR_ANALYTICS_TRACKING_ID: ${HOTJAR_ANALYTICS_TRACKING_ID}
+      SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
+    links:
+      - nearby-services-api:nearby-services-api
+    command: sh -c 'npm install ; npm run watch-dev-docker'
+
+  nearby-services-api:
+    build:
+      context: nearby-services-api
+      args:
+        NODE_ENV: ${NODE_ENV}
+    volumes:
+      - /Users/#{username}/NHS.UK/nearby-services-api:/code
+    ports:
+      - 3001:3001/
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
+      SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+    command: sh -c 'npm install ; npm run watch-dev-docker'
