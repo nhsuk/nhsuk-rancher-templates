@@ -7,7 +7,7 @@ services:
     build:
       context: ${CODE_DIR}/connecting-to-services/
       args:
-        NODE_ENV: development
+        NODE_ENV: ${NODE_ENV}
     command: npm run watch-dev
     ports:
       - 3000:3000
@@ -30,7 +30,7 @@ services:
     build:
       context: ${CODE_DIR}/nearby-services-api/
       args:
-        NODE_ENV: development
+        NODE_ENV: ${NODE_ENV}
     command: npm run watch-dev
     volumes:
       - ${CODE_DIR}/nearby-services-api/:/app
@@ -44,7 +44,7 @@ services:
     build:
       context: ${CODE_DIR}/connecting-to-services/
       args:
-        NODE_ENV: development
+        NODE_ENV: ${NODE_ENV}
     command: npm run watch-test
     volumes:
       - ${CODE_DIR}/connecting-to-services/:/app
@@ -54,7 +54,7 @@ services:
     build:
       context: ${CODE_DIR}/nearby-services-api/
       args:
-        NODE_ENV: development
+        NODE_ENV: ${NODE_ENV}
     command: npm run watch-test
     volumes:
       - ${CODE_DIR}/nearby-services-api/:/app
