@@ -8,7 +8,7 @@ services:
       context: ${CODE_DIR}/connecting-to-services/
       args:
         NODE_ENV: ${NODE_ENV}
-    command: npm run watch-dev
+    command: sh -c "npm install && npm run watch-dev"
     ports:
       - 3000:3000
     volumes:
@@ -31,7 +31,7 @@ services:
       context: ${CODE_DIR}/nearby-services-api/
       args:
         NODE_ENV: ${NODE_ENV}
-    command: npm run watch-dev
+    command: sh -c "npm install && npm run watch-dev"
     volumes:
       - ${CODE_DIR}/nearby-services-api/:/code
       - api-deps:/code/node_modules
@@ -39,6 +39,13 @@ services:
       NODE_ENV: ${NODE_ENV}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+    links:
+      - mongodb-pharmacy:mongo
+
+  mongodb-pharmacy:
+    build:
+      context: ${CODE_DIR}/org-etl/
+      dockerfile: Dockerfile-mongodb
 
 volumes:
   app-deps:
