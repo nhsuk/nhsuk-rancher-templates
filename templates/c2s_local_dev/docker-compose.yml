@@ -40,6 +40,26 @@ services:
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
 
+  web-app-test:
+    build:
+      context: ${CODE_DIR}/connecting-to-services/
+      args:
+        NODE_ENV: development
+    command: npm run watch-test
+    volumes:
+      - ${CODE_DIR}/connecting-to-services/:/app
+      - app-deps:/app/node_modules
+
+  api-test:
+    build:
+      context: ${CODE_DIR}/nearby-services-api/
+      args:
+        NODE_ENV: development
+    command: npm run watch-test
+    volumes:
+      - ${CODE_DIR}/nearby-services-api/:/app
+      - api-deps:/api/node_modules
+
 volumes:
   app-deps:
   api-deps:
