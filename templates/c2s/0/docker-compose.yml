@@ -1,43 +1,37 @@
 version: '2'
 
 services:
-
   c2s-frontend:
-    build:
-      context: ~/code/connecting-to-services/
-      args:
-        NODE_ENV: development
-    command: npm run watch-dev
-    ports:
-      - 3000:3000
-    volumes:
-      - ~/code/connecting-to-services/:/app
-      - app-deps:/app/node_modules
+    image: "nhsuk/connecting-to-services:${c2s_docker_image_tag}"
     environment:
-      WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID}
-      NODE_ENV: ${NODE_ENV}
-      API_BASE_URL: http://nearby-services-api:3001
-      GOOGLE_ANALYTICS_TRACKING_ID: ${GOOGLE_ANALYTICS_TRACKING_ID}
-      HOTJAR_ANALYTICS_TRACKING_ID: ${HOTJAR_ANALYTICS_TRACKING_ID}
-      SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
-      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
+      NODE_ENV: production
+      SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
+      SPLUNK_HEC_TOKEN: ${splunk_hec_token}
+      HOTJAR_ANALYTICS_TRACKING_ID: ${hotjar_id}
+      GOOGLE_ANALYTICS_TRACKING_ID: ${google_id}
+      WEBTRENDS_ANALYTICS_TRACKING_ID: ${webtrends_id}
+      API_BASE_URL: 'http://nearby-services-api:3001'
     links:
     - nearby-services-api:nearby-services-api
 
-  nearby-services-api:
-    build:
-      context: ~/code/nearby-services-api/
-      args:
-        NODE_ENV: development
-    command: npm run watch-dev
-    volumes:
-      - ~/code/nearby-services-api/:/app
-      - api-deps:/api/node_modules
-    environment:
-      NODE_ENV: ${NODE_ENV}
-      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
-      SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+  lb:
+    image: rancher/lb-service-haproxy:v0.4.9
+    ports:
+    - 80:80/tcp
+    - 443:443/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
+      io.rancher.scheduler.global: 'true'
 
-volumes:
-  app-deps:
-  api-deps:
+  http-https-redirect:
+    image: jamessharp/docker-nginx-https-redirect
+    labels:
+      io.rancher.scheduler.global: 'true'
+
+  nearby-services-api:
+    image: "nhsuk/nearby-services-api:${nearbyservices_docker_image_tag}"
+    environment:
+      NODE_ENV: production
+      SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
+      SPLUNK_HEC_TOKEN: ${splunk_hec_token}

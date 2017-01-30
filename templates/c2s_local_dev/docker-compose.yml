@@ -3,9 +3,17 @@ version: '2'
 services:
 
   c2s-frontend:
-    image: nhsuk/connecting-to-services:${FE_TAG}
+    # image: "nhsuk/connecting-to-services:master"
+    build:
+      context: ~/code/connecting-to-services/
+      args:
+        NODE_ENV: development
+    command: npm run watch-dev
     ports:
-    - 3000:3000/tcp
+      - 3000:3000
+    volumes:
+      - ~/code/connecting-to-services/:/app
+      - app-deps:/app/node_modules
     environment:
       WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID}
       NODE_ENV: ${NODE_ENV}
@@ -18,8 +26,20 @@ services:
     - nearby-services-api:nearby-services-api
 
   nearby-services-api:
-    image: nhsuk/nearby-services-api:${API_TAG}
+    # image: "nhsuk/nearby-services-api:master"
+    build:
+      context: ~/code/nearby-services-api/
+      args:
+        NODE_ENV: development
+    command: npm run watch-dev
+    volumes:
+      - ~/code/nearby-services-api/:/app
+      - api-deps:/api/node_modules
     environment:
       NODE_ENV: ${NODE_ENV}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+
+volumes:
+  app-deps:
+  api-deps:
