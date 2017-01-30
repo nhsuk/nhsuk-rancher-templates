@@ -5,14 +5,14 @@ services:
   c2s-frontend:
     # image: "nhsuk/connecting-to-services:master"
     build:
-      context: ~/code/connecting-to-services/
+      context: ${CODE_DIR}/connecting-to-services/
       args:
         NODE_ENV: development
     command: npm run watch-dev
     ports:
       - 3000:3000
     volumes:
-      - ~/code/connecting-to-services/:/app
+      - ${CODE_DIR}/connecting-to-services/:/app
       - app-deps:/app/node_modules
     environment:
       WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID}
@@ -28,12 +28,12 @@ services:
   nearby-services-api:
     # image: "nhsuk/nearby-services-api:master"
     build:
-      context: ~/code/nearby-services-api/
+      context: ${CODE_DIR}/nearby-services-api/
       args:
         NODE_ENV: development
     command: npm run watch-dev
     volumes:
-      - ~/code/nearby-services-api/:/app
+      - ${CODE_DIR}/nearby-services-api/:/app
       - api-deps:/api/node_modules
     environment:
       NODE_ENV: ${NODE_ENV}
