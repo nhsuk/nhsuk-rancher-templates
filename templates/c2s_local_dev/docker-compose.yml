@@ -12,8 +12,8 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ${CODE_DIR}/connecting-to-services/:/app
-      - app-deps:/app/node_modules
+      - ${CODE_DIR}/connecting-to-services/:/code
+      - app-deps:/code/node_modules
     environment:
       WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID}
       NODE_ENV: ${NODE_ENV}
@@ -33,7 +33,7 @@ services:
         NODE_ENV: ${NODE_ENV}
     command: npm run watch-dev
     volumes:
-      - ${CODE_DIR}/nearby-services-api/:/app
+      - ${CODE_DIR}/nearby-services-api/:/code
       - api-deps:/api/node_modules
     environment:
       NODE_ENV: ${NODE_ENV}
@@ -47,8 +47,8 @@ services:
         NODE_ENV: ${NODE_ENV}
     command: npm run watch-test
     volumes:
-      - ${CODE_DIR}/connecting-to-services/:/app
-      - app-deps:/app/node_modules
+      - ${CODE_DIR}/connecting-to-services/:/code
+      - app-deps:/code/node_modules
 
   api-test:
     build:
@@ -57,7 +57,7 @@ services:
         NODE_ENV: ${NODE_ENV}
     command: npm run watch-test
     volumes:
-      - ${CODE_DIR}/nearby-services-api/:/app
+      - ${CODE_DIR}/nearby-services-api/:/code
       - api-deps:/api/node_modules
 
 volumes:
