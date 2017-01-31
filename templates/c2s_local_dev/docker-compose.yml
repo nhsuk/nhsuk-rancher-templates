@@ -44,7 +44,7 @@ services:
     build:
       context: ${CODE_DIR}/connecting-to-services/
       args:
-        NODE_ENV: ${NODE_ENV}
+        NODE_ENV: test
     command: npm run watch-test
     volumes:
       - ${CODE_DIR}/connecting-to-services/:/code
@@ -54,7 +54,7 @@ services:
     build:
       context: ${CODE_DIR}/nearby-services-api/
       args:
-        NODE_ENV: ${NODE_ENV}
+        NODE_ENV: test
     command: npm run watch-test
     volumes:
       - ${CODE_DIR}/nearby-services-api/:/code
