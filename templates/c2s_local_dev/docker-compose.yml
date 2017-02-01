@@ -34,7 +34,7 @@ services:
     command: npm run watch-dev
     volumes:
       - ${CODE_DIR}/nearby-services-api/:/code
-      - api-deps:/api/node_modules
+      - api-deps:/code/node_modules
     environment:
       NODE_ENV: ${NODE_ENV}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
@@ -48,7 +48,7 @@ services:
     command: npm run watch-test
     volumes:
       - ${CODE_DIR}/connecting-to-services/:/code
-      - app-deps:/code/node_modules
+      - app-test-deps:/code/node_modules
 
   api-test:
     build:
@@ -58,8 +58,10 @@ services:
     command: npm run watch-test
     volumes:
       - ${CODE_DIR}/nearby-services-api/:/code
-      - api-deps:/api/node_modules
+      - api-test-deps:/code/node_modules
 
 volumes:
   app-deps:
   api-deps:
+  app-test-deps:
+  api-test-deps:
