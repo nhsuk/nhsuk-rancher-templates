@@ -22,28 +22,7 @@ services:
       - ${CODE_DIR}/nearby-services-api/:/code
       - api-test-deps:/code/node_modules
 
-  web-app-lint:
-    build:
-      context: ${CODE_DIR}/connecting-to-services/
-      args:
-        NODE_ENV: test
-    command: npm run watch-lint
-    volumes:
-      - ${CODE_DIR}/connecting-to-services/:/code
-      - app-lint-deps:/code/node_modules
-
-  api-lint:
-    build:
-      context: ${CODE_DIR}/nearby-services-api/
-      args:
-        NODE_ENV: test
-    command: npm run watch-lint
-    volumes:
-      - ${CODE_DIR}/nearby-services-api/:/code
-      - api-lint-deps:/code/node_modules
-
 volumes:
   app-test-deps:
   api-test-deps:
-  app-lint-deps:
-  api-lint-deps:
+
