@@ -1,8 +1,0 @@
-name: c2s
-description: |
-  Full stack deployment of c2s
-version: v1
-category: nhsuk beta
-maintainer: Adam Graves
-license: whl
-projectURL: https://github.com/adamgraves-choices/c2s-rancher-template
