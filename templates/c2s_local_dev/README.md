@@ -21,6 +21,10 @@ The `docker-compose.yml` will setup a local development environment where the co
 If there is no need to create the Docker image locally and an existing image is needed. The line specifying the `image` can be uncommented.
 
 
+## Run test type services in the container
+
+In order to run services like unit tests and linters another compose file has been created to collect all of these types of services into a single file. The benefit is to simplify the individual compose files and to keep the log output clearer and more focused on the services that are being run by that compose. Run `docker-compose -f docker-compose-tests.yml --build --force-recreate` to start up the test service container.
+
 ## FAQ
 
 1. When I run `docker-compose` I get errors about packages missing. Often it seems to be Nodemon.
