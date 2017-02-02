@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+  web-app-test:
+    build:
+      context: ${CODE_DIR}/connecting-to-services/
+      args:
+        NODE_ENV: test
+    command: npm run watch-test
+    volumes:
+      - ${CODE_DIR}/connecting-to-services/:/code
+      - app-test-deps:/code/node_modules
+
+  api-test:
+    build:
+      context: ${CODE_DIR}/nearby-services-api/
+      args:
+        NODE_ENV: test
+    command: npm run watch-test
+    volumes:
+      - ${CODE_DIR}/nearby-services-api/:/code
+      - api-test-deps:/code/node_modules
+
+volumes:
+  app-test-deps:
+  api-test-deps:
+
