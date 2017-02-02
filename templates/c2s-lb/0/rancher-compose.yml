@@ -26,6 +26,7 @@ lb:
       source_port: 80
       target_port: 80
     - hostname: ''
+      path: /finders
       priority: 2
       protocol: https
       service: ${pharmacy_finder_frontend_service}
