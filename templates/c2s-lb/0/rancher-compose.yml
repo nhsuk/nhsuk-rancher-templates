@@ -1,0 +1,41 @@
+catalog:
+  name: nhsuk_c2s_lb
+  version: 1.0.0
+  description: |
+    Connecting to Services - Load Balancer config for staging/production
+  minimum_rancher_version: v0.59.0
+  questions:
+    - variable: "pharmacy_finder_frontend_service"
+      description: "The pharmacy finder 'stack/service' which the load balancer will route to"
+      label: "Stack:"
+      required: true
+      default: "c2s-pharmacy-finder/c2s-frontend"
+      type: "string"
+
+lb:
+  start_on_create: true
+  lb_config:
+    certs: []
+    default_cert: c2s
+    port_rules:
+    - hostname: ''
+      path: ''
+      priority: 1
+      protocol: http
+      service: http-https-redirect
+      source_port: 80
+      target_port: 80
+    - hostname: ''
+      path: /finders
+      priority: 2
+      protocol: https
+      service: ${pharmacy_finder_frontend_service}
+      source_port: 443
+      target_port: 3000
+  health_check:
+    healthy_threshold: 2
+    response_timeout: 2000
+    port: 42
+    unhealthy_threshold: 3
+    interval: 2000
+    strategy: recreate

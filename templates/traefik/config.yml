@@ -1,0 +1,18 @@
+name: NHS.uk Traefik Load Balancer
+description: |
+  Dynamic Traefik loadbalancer
+
+  EXPERIMENTAL!!! DON'T USE IN PRODUCTION.
+
+  Listens on ports:
+
+  - 80: HTTP
+  - 443: HTTPS (if configured)
+  - 8000: Admin page for Traefik (Useful for seeing rules and routing)
+
+  Traefik works by using Docker labels which have been assigned to containers to define the routing table. See https://github.com/rawmind0/rancher-traefik#configuration-labels.
+
+  NOTE: Rancher health checks need to be enable on a service, otherwise Traefik won't accept the config.
+version: v1
+category: nhsuk beta load-balancer
+projectURL: https://github.com/nhsuk/nhsuk-rancher-templates

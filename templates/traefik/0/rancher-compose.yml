@@ -1,11 +1,9 @@
 catalog:
-  name: traefik
+  name: nhsuk_traefik
   version: v1
   description: |
     (Experimental) Traefik load balancer.
   minimum_rancher_version: v0.59.0
-  maintainer: "Adam Graves <adam.graves@nhs.net>"
-  uuid: traefik-0
   questions:
     - variable: "http_port"
       description: "Traefik http public port to listen."

@@ -1,8 +1,0 @@
-name: c2s_traefik
-description: |
-  Full stack deployment of C2S (with traefik)
-version: v1
-category: nhsuk beta
-maintainer: Adam Graves
-license: whl
-projectURL: https://github.com/adamgraves-choices/c2s-rancher-template

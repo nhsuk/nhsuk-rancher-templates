@@ -4,7 +4,6 @@ catalog:
   description: |
     Connecting to Services (Using Rancher LB)
   minimum_rancher_version: v0.59.0
-  maintainer: "Adam Graves <adam.graves@nhs.net>"
   questions:
     - variable: "c2s_docker_image_tag"
       description: "c2s Docker image tag"
@@ -49,7 +48,7 @@ catalog:
       type: "string"
 
 c2s-frontend:
-  scale: 2
+  scale: 1
   start_on_create: true
   health_check:
     response_timeout: 5000
@@ -63,7 +62,7 @@ c2s-frontend:
     reinitializing_timeout: 60000
 
 nearby-services-api:
-  scale: 2
+  scale: 1
   health_check:
     response_timeout: 60000
     healthy_threshold: 2
@@ -75,30 +74,3 @@ nearby-services-api:
     request_line: GET "/nearby?latitude=53.800755&longitude=-1.549077" "HTTP/1.0"
     reinitializing_timeout: 60000
   start_on_create: true
-
-lb:
-  start_on_create: true
-  lb_config:
-    certs: []
-    default_cert: c2s
-    port_rules:
-    - hostname: ''
-      path: ''
-      priority: 1
-      protocol: http
-      service: http-https-redirect
-      source_port: 80
-      target_port: 80
-    - hostname: ''
-      priority: 2
-      protocol: https
-      service: c2s-frontend
-      source_port: 443
-      target_port: 3000
-  health_check:
-    healthy_threshold: 2
-    response_timeout: 2000
-    port: 42
-    unhealthy_threshold: 3
-    interval: 2000
-    strategy: recreate
