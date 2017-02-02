@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+
+  web-app-test:
+    build:
+      context: ${CODE_DIR}/profiles/
+      args:
+        NODE_ENV: test
+    command: npm run watch-test
+    volumes:
+      - ${CODE_DIR}/profiles/:/code
+      - profiles-test-node_modules:/code/node_modules
+
+volumes:
+  profiles-test-node_modules:
+
