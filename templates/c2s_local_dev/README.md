@@ -23,7 +23,9 @@ If there is no need to create the Docker image locally and an existing image is 
 
 ## Run test services in a container
 
-In order to run test services such as unit tests, performance tests, integration tests, etc. another compose file has been created to combine them into a single file. The benefit is to simplify the individual compose files and to keep the log output clearer and more focused on the services that are being run by that compose. Run `docker-compose -f docker-compose-tests.yml --build --force-recreate` to start up the test service container.
+In order to run test services such as unit tests, performance tests, integration tests, etc. another compose file has been created to combine them into a single file. The benefit is to simplify the individual compose files and to keep the log output clearer and more focused on the services that are being run by that compose. 
+Create an env.sh file with your secrets based on the .env-sample.sh
+Run `source env.sh; docker-compose -f docker-compose-tests.yml up --build --force-recreate` to start up the test service container.
 
 ## FAQ
 

@@ -7,7 +7,7 @@ services:
       context: ${CODE_DIR}/connecting-to-services/
       args:
         NODE_ENV: test
-    command: npm run watch-test
+    command: sh -c 'npm run watch-test && npm run git-hook'
     volumes:
       - ${CODE_DIR}/connecting-to-services/:/code
       - app-test-deps:/code/node_modules
@@ -17,10 +17,19 @@ services:
       context: ${CODE_DIR}/nearby-services-api/
       args:
         NODE_ENV: test
-    command: npm run watch-test
+    command: sh -c 'npm run watch-test && npm run git-hook'
+    environment:
+      SNYK_TOKEN: ${SNYK_TOKEN}
     volumes:
       - ${CODE_DIR}/nearby-services-api/:/code
       - api-test-deps:/code/node_modules
+    links:
+      - mongodb-pharmacy-test:mongo
+
+  mongodb-pharmacy-test:
+    build:
+      context: ${CODE_DIR}/org-etl/
+      dockerfile: Dockerfile-mongodb
 
 volumes:
   app-test-deps:
