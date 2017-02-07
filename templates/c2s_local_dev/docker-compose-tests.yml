@@ -7,7 +7,7 @@ services:
       context: ${CODE_DIR}/connecting-to-services/
       args:
         NODE_ENV: test
-    command: sh -c 'npm run watch-test && npm run git-hook'
+    command: sh -c 'npm run git-hook && npm run watch-test'
     volumes:
       - ${CODE_DIR}/connecting-to-services/:/code
       - app-test-deps:/code/node_modules
@@ -17,7 +17,7 @@ services:
       context: ${CODE_DIR}/nearby-services-api/
       args:
         NODE_ENV: test
-    command: sh -c 'npm run watch-test && npm run git-hook'
+    command: sh -c 'npm run git-hook && npm run watch-test'
     environment:
       SNYK_TOKEN: ${SNYK_TOKEN}
     volumes:
