@@ -6,8 +6,11 @@ services:
     build:
       context: ${CODE_DIR}/connecting-to-services/
       args:
-        NODE_ENV: test
-    command: sh -c 'npm run git-hook && npm run watch-test'
+        NODE_ENV: development
+    command: sh -c 'npm run git-hook && npm run upload-coverage-coveralls && npm run upload-coverage-codacy && npm run watch-test'
+    environment:
+      CODACY_PROJECT_TOKEN: ${CODACY_PROJECT_TOKEN}
+      COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
     volumes:
       - ${CODE_DIR}/connecting-to-services/:/code
       - app-test-deps:/code/node_modules
@@ -16,10 +19,11 @@ services:
     build:
       context: ${CODE_DIR}/nearby-services-api/
       args:
-        NODE_ENV: test
-    command: sh -c 'npm run git-hook && npm run watch-test'
+        NODE_ENV: development
+    command: sh -c 'npm run git-hook && npm run snyk-test && npm run upload-coverage-coveralls && npm run watch-test'
     environment:
       SNYK_TOKEN: ${SNYK_TOKEN}
+      COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
     volumes:
       - ${CODE_DIR}/nearby-services-api/:/code
       - api-test-deps:/code/node_modules

@@ -30,5 +30,5 @@ Run `source env.sh; docker-compose -f docker-compose-tests.yml up --build --forc
 ## FAQ
 
 1. When I run `docker-compose` I get errors about packages missing. Often it seems to be Nodemon.
-  * This could well be because the volume used by the service has previously been mounted when `NODE_ENV` was set to `production`. Try running `docker-compose down -v` which removes all the things created by the `docker-compose up` command, including volumes (with the `-v` flag).
+  * This could well be because the volume used by the service has previously been mounted when `NODE_ENV` was set to `production`. Try running `docker-compose down -v` which removes all the things created by the `docker-compose up` command, including volumes (with the `-v` flag). For test, run `docker-compose -f docker-compose-tests.yml down -v`
 
