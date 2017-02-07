@@ -45,8 +45,8 @@ services:
   mongodb-pharmacy:
     build:
       context: ${CODE_DIR}/org-etl/
-      dockerfile: Dockerfile-mongodb
 
 volumes:
   app-deps:
   api-deps:
+
