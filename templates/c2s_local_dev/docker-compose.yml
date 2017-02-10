@@ -39,7 +39,14 @@ services:
       NODE_ENV: ${NODE_ENV}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+    links:
+      - mongodb-pharmacy:mongo
+
+  mongodb-pharmacy:
+    build:
+      context: ${CODE_DIR}/org-etl/
 
 volumes:
   app-deps:
   api-deps:
+
