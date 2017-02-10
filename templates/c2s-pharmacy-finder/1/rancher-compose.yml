@@ -86,7 +86,7 @@ mongodb-pharmacy:
   health_check:
     response_timeout: 60000
     healthy_threshold: 2
-    port: 271017
+    port: 27017
     unhealthy_threshold: 3
     initializing_timeout: 60000
     interval: 20000
