@@ -1,0 +1,96 @@
+catalog:
+  name: nhsuk_c2s
+  version: 1.0.0
+  description: |
+    Connecting to Services (Using Rancher LB)
+  minimum_rancher_version: v0.59.0
+  questions:
+    - variable: "c2s_docker_image_tag"
+      description: "c2s Docker image tag"
+      label: "c2s Docker image tag:"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "nearbyservices_docker_image_tag"
+      description: "nearby-services-api Docker image tag"
+      label: "nearby-services-api Docker image tag:"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "mongodb_pharmacy_docker_image_tag"
+      description: "mongodb_pharmacy Docker image tag"
+      label: "mongodb_pharmacy Docker image tag:"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "splunk_hec_endpoint"
+      description: "Splunk HTTP Event Collector URL"
+      label: "Splunk HTTP Event Collector URL:"
+      required: true
+      default: "https://splunk-collector.cloudapp.net:8088"
+      type: "string"
+    - variable: "splunk_hec_token"
+      description: "Splunk HTTP Event Collector Token"
+      label: "Splunk HTTP Event Collector Token:"
+      required: true
+      type: "string"
+    - variable: "hotjar_id"
+      description: "HotJar Tracking ID"
+      label: "HotJar Tracking ID:"
+      required: true
+      default: "265857"
+      type: "string"
+    - variable: "google_id"
+      description: "Google Tracking ID"
+      label: "Google Tracking ID:"
+      required: true
+      default: "UA-67365892-5"
+      type: "string"
+    - variable: "webtrends_id"
+      description: "WebTrends ID"
+      label: "WebTrends ID:"
+      required: true
+      default: "dcs222rfg0jh2hpdaqwc2gmki_9r4q"
+      type: "string"
+
+c2s-frontend:
+  scale: 1
+  start_on_create: true
+  health_check:
+    response_timeout: 5000
+    healthy_threshold: 2
+    port: 3000
+    unhealthy_threshold: 3
+    initializing_timeout: 60000
+    interval: 5000
+    strategy: recreate
+    request_line: GET "/finders/find-help" "HTTP/1.0"
+    reinitializing_timeout: 60000
+
+nearby-services-api:
+  scale: 1
+  health_check:
+    response_timeout: 60000
+    healthy_threshold: 2
+    port: 3001
+    unhealthy_threshold: 3
+    initializing_timeout: 60000
+    interval: 20000
+    strategy: recreate
+    request_line: GET "/nearby?latitude=53.800755&longitude=-1.549077" "HTTP/1.0"
+    reinitializing_timeout: 60000
+  start_on_create: true
+
+mongodb-pharmacy:
+  scale: 1
+  health_check:
+    response_timeout: 60000
+    healthy_threshold: 2
+    port: 271017
+    unhealthy_threshold: 3
+    initializing_timeout: 60000
+    interval: 20000
+    strategy: recreate
+    request_line: ''
+    reinitializing_timeout: 60000
+  start_on_create: true
