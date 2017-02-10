@@ -39,5 +39,5 @@ services:
     labels:
       traefik.enable: true
       traefik.domain: ${traefik_domain}
-      traefik.port: 3001
+      traefik.port: 27017
       io.rancher.container.pull_image: always

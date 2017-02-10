@@ -19,7 +19,7 @@ catalog:
       type: "string"
     - variable: "mongodb_pharmacy_docker_image_tag"
       description: "mongodb_pharmacy Docker image tag"
-      label: "nearby-services-api Docker image tag:"
+      label: "mongodb_pharmacy Docker image tag:"
       required: true
       default: "latest"
       type: "string"
@@ -83,4 +83,14 @@ nearby-services-api:
 
 mongodb-pharmacy:
   scale: 1
+  health_check:
+    response_timeout: 60000
+    healthy_threshold: 2
+    port: 271017
+    unhealthy_threshold: 3
+    initializing_timeout: 60000
+    interval: 20000
+    strategy: recreate
+    request_line: ''
+    reinitializing_timeout: 60000
   start_on_create: true
