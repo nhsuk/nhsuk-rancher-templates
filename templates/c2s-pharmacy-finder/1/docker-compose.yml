@@ -35,7 +35,7 @@ services:
     - mongodb-pharmacy:mongo
 
   mongodb-pharmacy:
-    image: "nhsuk/mongodb-pharmacy::${mongodb_pharmacy_docker_image_tag}"
+    image: "nhsuk/mongodb-pharmacy:${mongodb_pharmacy_docker_image_tag}"
     labels:
       traefik.enable: true
       traefik.domain: ${traefik_domain}
