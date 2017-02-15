@@ -5,11 +5,18 @@ catalog:
     Connecting to Services - Load Balancer config for staging/production
   minimum_rancher_version: v0.59.0
   questions:
-    - variable: "pharmacy_finder_frontend_service"
+    - variable: "pharmacy_finder_frontend_service_1"
       description: "The pharmacy finder 'stack/service' which the load balancer will route to"
       label: "Stack:"
       required: true
       default: "c2s-pharmacy-finder/c2s-frontend"
+      type: "string"
+  questions:
+    - variable: "pharmacy_finder_frontend_service_2"
+      description: "The mongo pharmacy finder 'stack/service' which the load balancer will route to"
+      label: "Stack:"
+      required: true
+      default: "c2s-pharmacy-finder-mongo/c2s-frontend"
       type: "string"
 
 lb:
@@ -25,11 +32,18 @@ lb:
       service: http-https-redirect
       source_port: 80
       target_port: 80
-    - hostname: ''
+    - url: 'c2s-pharmacy-finder.staging.c2s.nhschoices.net'
       path: /finders
       priority: 2
       protocol: https
-      service: ${pharmacy_finder_frontend_service}
+      service: ${pharmacy_finder_frontend_service_1}
+      source_port: 443
+      target_port: 3000
+    - hostname: 'c2s-pharmacy-finder-mongo.staging.c2s.nhschoices.net'
+      path: /finders
+      priority: 3
+      protocol: https
+      service: ${pharmacy_finder_frontend_service_2}
       source_port: 443
       target_port: 3000
   health_check:
