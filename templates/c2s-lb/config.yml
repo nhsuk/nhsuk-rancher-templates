@@ -2,5 +2,5 @@ name: C2S - Load Balancer
 description: |
   Connecting to Services - Load Balancer config for staging/production
 version: v1
-category: nhsuk beta
+category: nhsuk beta load-balancer
 projectURL: https://github.com/nhsuk/nhsuk-rancher-templates
