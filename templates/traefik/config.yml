@@ -13,6 +13,6 @@ description: |
   Traefik works by using Docker labels which have been assigned to containers to define the routing table. See https://github.com/rawmind0/rancher-traefik#configuration-labels.
 
   NOTE: Rancher health checks need to be enable on a service, otherwise Traefik won't accept the config.
-version: v1
+version: 1.0.0
 category: nhsuk beta load-balancer
 projectURL: https://github.com/nhsuk/nhsuk-rancher-templates
