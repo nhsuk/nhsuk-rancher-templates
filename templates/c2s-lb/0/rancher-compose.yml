@@ -57,7 +57,7 @@ services:
         source_port: 443
         target_port: 3000
       - hostname: ''
-        path: /gp-finders
+        path: /gp-finder
         priority: 4
         protocol: https
         service: ${gp_finder_frontend_service}
