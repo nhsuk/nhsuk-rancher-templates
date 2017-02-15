@@ -3,4 +3,4 @@ description: |
   Connecting to Services - Profiles (require separate loadbalancer stack or traefik lb running in the stack)
 version: v1
 category: nhsuk beta
-projectURL: https://github.com/nhsuk/gp-finder
+projectURL: https://github.com/nhsuk/profiles
