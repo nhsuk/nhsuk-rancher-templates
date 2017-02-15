@@ -19,6 +19,12 @@ catalog:
       required: true
       default: "c2s-profiles/profiles-frontend"
       type: "string"
+    - variable: "gp_finder_frontend_service"
+      description: "The GP Finder 'stack/service' which the load balancer will route to"
+      label: "Stack:"
+      required: true
+      default: "c2s-gp-finder/gp-finder-frontend"
+      type: "string"
 
 services:
   http-https-redirect:
@@ -48,6 +54,13 @@ services:
         priority: 3
         protocol: https
         service: ${profiles_frontend_service}
+        source_port: 443
+        target_port: 3000
+      - hostname: ''
+        path: /gp-finder
+        priority: 4
+        protocol: https
+        service: ${gp_finder_frontend_service}
         source_port: 443
         target_port: 3000
     health_check:
