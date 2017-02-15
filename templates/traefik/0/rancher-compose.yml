@@ -1,6 +1,8 @@
+version: '2'
+
 catalog:
   name: nhsuk_traefik
-  version: v1
+  version: 1.0.0
   description: |
     (Experimental) Traefik load balancer.
   minimum_rancher_version: v0.59.0
@@ -76,18 +78,20 @@ catalog:
       required: true
       default: 10
       type: "int"
-traefik:
-  retain_ip: true
-  health_check:
-    port: 8000
-    interval: 5000
-    unhealthy_threshold: 3
-    request_line: 'GET /dashboard/# HTTP/1.0'
-    healthy_threshold: 2
-    response_timeout: 5000
-  metadata:
-    traefik:
-      ssl_key: |
-        ${ssl_key}
-      ssl_crt: |
-        ${ssl_crt}
+
+services:
+  traefik:
+    retain_ip: true
+    health_check:
+      port: 8000
+      interval: 5000
+      unhealthy_threshold: 3
+      request_line: 'GET /dashboard/# HTTP/1.0'
+      healthy_threshold: 2
+      response_timeout: 5000
+    metadata:
+      traefik:
+        ssl_key: |
+          ${ssl_key}
+        ssl_crt: |
+          ${ssl_crt}
