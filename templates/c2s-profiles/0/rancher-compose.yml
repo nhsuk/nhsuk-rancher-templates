@@ -2,7 +2,7 @@ version: '2'
 
 catalog:
   name: nhsuk_profiles
-  version: 1.0.0
+  version: 1.1.0
   description: |
     Connecting to Services - Profiles (Using Rancher LB)
   minimum_rancher_version: v0.59.0
@@ -10,6 +10,12 @@ catalog:
     - variable: "profiles_docker_image_tag"
       description: "profiles Docker image tag"
       label: "profiles Docker image tag:"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "profiles_db_docker_image_tag"
+      description: "profiles-db Docker image tag"
+      label: "profiles-db Docker image tag:"
       required: true
       default: "latest"
       type: "string"
@@ -56,5 +62,19 @@ services:
       interval: 5000
       strategy: recreate
       request_line: GET "/" "HTTP/1.0"
+      reinitializing_timeout: 60000
+
+  profiles-db:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 60000
+      healthy_threshold: 2
+      port: 27017
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 20000
+      strategy: recreate
+      request_line: ''
       reinitializing_timeout: 60000
 
