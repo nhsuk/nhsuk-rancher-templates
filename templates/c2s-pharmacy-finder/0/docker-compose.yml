@@ -31,3 +31,13 @@ services:
       traefik.domain: ${traefik_domain}
       traefik.port: 3001
       io.rancher.container.pull_image: always
+    links:
+    - mongodb-pharmacy:mongo
+
+  mongodb-pharmacy:
+    image: "nhsuk/mongodb-pharmacy:${mongodb_pharmacy_docker_image_tag}"
+    labels:
+      traefik.enable: true
+      traefik.domain: ${traefik_domain}
+      traefik.port: 27017
+      io.rancher.container.pull_image: always
