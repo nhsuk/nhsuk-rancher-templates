@@ -2,7 +2,8 @@ version: '2'
 
 catalog:
   name: nhsuk_c2s_lb
-  version: 1.0.0
+  version: 1.0.1
+  upgrade_from: 1.0.0
   description: |
     Connecting to Services - Load Balancer config for staging/production
   minimum_rancher_version: v0.59.0

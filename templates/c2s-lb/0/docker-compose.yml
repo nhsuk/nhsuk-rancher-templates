@@ -3,7 +3,7 @@ version: '2'
 services:
 
   lb:
-    image: rancher/lb-service-haproxy:v0.4.9
+    image: rancher/lb-service-haproxy:v0.5.9
     ports:
     - 80:80/tcp
     - 443:443/tcp
@@ -13,6 +13,6 @@ services:
       io.rancher.scheduler.global: 'true'
 
   http-https-redirect:
-    image: jamessharp/docker-nginx-https-redirect
+    image: nhsuk/docker-nginx-https-redirect:1.0.0
     labels:
       io.rancher.scheduler.global: 'true'
