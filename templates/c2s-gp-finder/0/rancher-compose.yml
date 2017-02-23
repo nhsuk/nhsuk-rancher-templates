@@ -11,6 +11,12 @@ catalog:
       required: true
       default: "latest"
       type: "string"
+    - variable: "gp_finder_db_docker_image_tag"
+      description: "gp-finder-db Docker image tag"
+      label: "gp-finder-db Docker image tag:"
+      required: true
+      default: "latest"
+      type: "string"
     - variable: "splunk_hec_endpoint"
       description: "Splunk HTTP Event Collector URL"
       label: "Splunk HTTP Event Collector URL:"
@@ -41,17 +47,31 @@ catalog:
       default: "dcs222rfg0jh2hpdaqwc2gmki_9r4q"
       type: "string"
 
-gp-finder-frontend:
-  scale: 1
-  start_on_create: true
-  health_check:
-    response_timeout: 5000
-    healthy_threshold: 2
-    port: 3000
-    unhealthy_threshold: 3
-    initializing_timeout: 60000
-    interval: 5000
-    strategy: recreate
-    request_line: GET "/" "HTTP/1.0"
-    reinitializing_timeout: 60000
+services:
+  gp-finder-frontend:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 3000
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 5000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+      reinitializing_timeout: 60000
 
+  gp-finder-db:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 60000
+      healthy_threshold: 2
+      port: 27017
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 20000
+      strategy: recreate
+      request_line: ''
+      reinitializing_timeout: 60000

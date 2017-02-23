@@ -16,4 +16,13 @@ services:
       traefik.domain: ${traefik_domain}
       traefik.port: 3000
       io.rancher.container.pull_image: always
+    links:
+      - gp-finder-db:mongo
 
+  gp-finder-db:
+    image: "nhsuk/profiles-db:${gp_finder_db_docker_image_tag}"
+    labels:
+      traefik.enable: true
+      traefik.domain: ${traefik_domain}
+      traefik.port: 27017
+      io.rancher.container.pull_image: always
