@@ -1,3 +1,5 @@
+version: '2'
+
 catalog:
   name: nhsuk_gp_finder
   version: 1.0.0
@@ -11,9 +13,9 @@ catalog:
       required: true
       default: "latest"
       type: "string"
-    - variable: "gp_finder_db_docker_image_tag"
-      description: "gp-finder-db Docker image tag"
-      label: "gp-finder-db Docker image tag:"
+    - variable: "profiles_db_docker_image_tag"
+      description: "profiles-db Docker image tag"
+      label: "profiles-db Docker image tag:"
       required: true
       default: "latest"
       type: "string"
@@ -62,7 +64,7 @@ services:
       request_line: GET "/" "HTTP/1.0"
       reinitializing_timeout: 60000
 
-  gp-finder-db:
+  profiles-db:
     scale: 1
     start_on_create: true
     health_check:
@@ -75,3 +77,4 @@ services:
       strategy: recreate
       request_line: ''
       reinitializing_timeout: 60000
+
