@@ -1,3 +1,5 @@
+version: '2'
+
 catalog:
   name: nhsuk_gp_finder
   version: 1.0.0
@@ -8,6 +10,12 @@ catalog:
     - variable: "gp_finder_docker_image_tag"
       description: "gp-finder Docker image tag"
       label: "gp-finder Docker image tag:"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "profiles_db_docker_image_tag"
+      description: "profiles-db Docker image tag"
+      label: "profiles-db Docker image tag:"
       required: true
       default: "latest"
       type: "string"
@@ -41,17 +49,32 @@ catalog:
       default: "dcs222rfg0jh2hpdaqwc2gmki_9r4q"
       type: "string"
 
-gp-finder-frontend:
-  scale: 1
-  start_on_create: true
-  health_check:
-    response_timeout: 5000
-    healthy_threshold: 2
-    port: 3000
-    unhealthy_threshold: 3
-    initializing_timeout: 60000
-    interval: 5000
-    strategy: recreate
-    request_line: GET "/" "HTTP/1.0"
-    reinitializing_timeout: 60000
+services:
+  gp-finder-frontend:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 3000
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 5000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+      reinitializing_timeout: 60000
+
+  profiles-db:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 60000
+      healthy_threshold: 2
+      port: 27017
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 20000
+      strategy: recreate
+      request_line: ''
+      reinitializing_timeout: 60000
 
