@@ -2,4 +2,4 @@ answers.txt
 npm-debug.log
 npm-debug.log.*
 .DS_Store
-
+*~
