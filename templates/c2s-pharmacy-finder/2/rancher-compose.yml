@@ -7,21 +7,21 @@ catalog:
     Connecting to Services (Using Rancher LB)
   minimum_rancher_version: v0.59.0
   questions:
-    - variable: "c2s_docker_image_tag"
-      description: "c2s Docker image tag"
-      label: "c2s Docker image tag:"
+    - variable: "connecting_to_services_docker_image_tag"
+      description: "C2S docker image tag"
+      label: "C2S docker image tag:"
       required: true
       default: "latest"
       type: "string"
-    - variable: "nearbyservices_docker_image_tag"
-      description: "nearby-services-api Docker image tag"
-      label: "nearby-services-api Docker image tag:"
+    - variable: "nearby_services_api_docker_image_tag"
+      description: "Nearby Services API docker image tag"
+      label: "Nearby Services API docker image tag"
       required: true
       default: "latest"
       type: "string"
-    - variable: "mongodb_pharmacy_docker_image_tag"
-      description: "mongodb_pharmacy Docker image tag"
-      label: "mongodb_pharmacy Docker image tag:"
+    - variable: "pharmacy_db_docker_image_tag"
+      description: "Pharmacy DB Docker image tag"
+      label: "Pharmacy DB Docker image tag"
       required: true
       default: "latest"
       type: "string"

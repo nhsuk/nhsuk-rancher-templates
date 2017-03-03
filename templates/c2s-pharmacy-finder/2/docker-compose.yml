@@ -3,7 +3,7 @@ version: '2'
 services:
 
   c2s-frontend:
-    image: "nhsuk/connecting-to-services:${c2s_docker_image_tag}"
+    image: "nhsuk/connecting-to-services:${connecting_to_services_docker_image_tag}"
     environment:
       NODE_ENV: production
       SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
@@ -22,7 +22,7 @@ services:
     - nearby-services-api:nearby-services-api
 
   nearby-services-api:
-    image: "nhsuk/nearby-services-api:${nearbyservices_docker_image_tag}"
+    image: "nhsuk/nearby-services-api:${nearby_services_api_docker_image_tag}"
     environment:
       NODE_ENV: production
       SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
@@ -37,7 +37,7 @@ services:
     - mongodb-pharmacy:mongo
 
   mongodb-pharmacy:
-    image: "nhsuk/mongodb-pharmacy:${mongodb_pharmacy_docker_image_tag}"
+    image: "nhsuk/mongodb-pharmacy:${pharmacy_db_docker_image_tag}"
     labels:
       traefik.enable: true
       traefik.domain: ${traefik_domain}
