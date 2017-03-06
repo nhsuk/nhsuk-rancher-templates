@@ -1,3 +1,5 @@
+version: '2'
+
 catalog:
   name: nhsuk_c2s
   version: 1.0.0
@@ -5,15 +7,21 @@ catalog:
     Connecting to Services (Using Rancher LB)
   minimum_rancher_version: v0.59.0
   questions:
-    - variable: "c2s_docker_image_tag"
+    - variable: "connecting_to_services_docker_image_tag"
       description: "c2s Docker image tag"
       label: "c2s Docker image tag:"
       required: true
       default: "latest"
       type: "string"
-    - variable: "nearbyservices_docker_image_tag"
+    - variable: "nearby_services_api_docker_image_tag"
       description: "nearby-services-api Docker image tag"
       label: "nearby-services-api Docker image tag:"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "pharmacy_db_docker_image_tag"
+      description: "pharmacy_db Docker image tag"
+      label: "pharmacy_db Docker image tag:"
       required: true
       default: "latest"
       type: "string"
@@ -47,30 +55,45 @@ catalog:
       default: "dcs222rfg0jh2hpdaqwc2gmki_9r4q"
       type: "string"
 
-c2s-frontend:
-  scale: 1
-  start_on_create: true
-  health_check:
-    response_timeout: 5000
-    healthy_threshold: 2
-    port: 3000
-    unhealthy_threshold: 3
-    initializing_timeout: 60000
-    interval: 5000
-    strategy: recreate
-    request_line: GET "/finders/find-help" "HTTP/1.0"
-    reinitializing_timeout: 60000
+services:
+  c2s-frontend:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 3000
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 5000
+      strategy: recreate
+      request_line: GET "/finders/find-help" "HTTP/1.0"
+      reinitializing_timeout: 60000
 
-nearby-services-api:
-  scale: 1
-  health_check:
-    response_timeout: 60000
-    healthy_threshold: 2
-    port: 3001
-    unhealthy_threshold: 3
-    initializing_timeout: 60000
-    interval: 20000
-    strategy: recreate
-    request_line: GET "/nearby?latitude=53.800755&longitude=-1.549077" "HTTP/1.0"
-    reinitializing_timeout: 60000
-  start_on_create: true
+  nearby-services-api:
+    scale: 1
+    health_check:
+      response_timeout: 60000
+      healthy_threshold: 2
+      port: 3001
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 20000
+      strategy: recreate
+      request_line: GET "/nearby?latitude=53.800755&longitude=-1.549077" "HTTP/1.0"
+      reinitializing_timeout: 60000
+    start_on_create: true
+
+  mongodb-pharmacy:
+    scale: 1
+    health_check:
+      response_timeout: 60000
+      healthy_threshold: 2
+      port: 27017
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 20000
+      strategy: recreate
+      request_line: ''
+      reinitializing_timeout: 60000
+    start_on_create: true
