@@ -1,0 +1,97 @@
+version: '2'
+
+catalog:
+  name: nhsuk_gp_finder
+  version: 1.0.2
+  description: |
+    Connecting to Services - GP Finder
+  minimum_rancher_version: v0.59.0
+  questions:
+    - variable: "GP_FINDER_DOCKER_IMAGE_TAG"
+      label: "GP Finder docker image tag"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "PROFILES_DB_DOCKER_IMAGE_TAG"
+      label: "profiles-db Docker image tag"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "PERF_TEST"
+      label: "Run a performance test?"
+      required: true
+      default: false
+      type: "boolean"
+    - variable: "SPLUNK_HEC_ENDPOINT"
+      label: "Splunk HTTP Event Collector URL"
+      required: true
+      default: "https://splunk-collector.cloudapp.net:8088"
+      type: "string"
+    - variable: "SPLUNK_HEC_TOKEN"
+      label: "Splunk HTTP Event Collector Token"
+      required: true
+      type: "string"
+    - variable: "TRAEFIK_DOMAIN"
+      description: "Traefik domain suffix"
+      label: "traefik domain suffix:"
+      required: true
+      default: "dev.c2s.nhschoices.net"
+      type: "string"
+    - variable: "HOTJAR_ID"
+      label: "HotJar Tracking ID"
+      required: true
+      default: "265857"
+      type: "string"
+    - variable: "GOOGLE_ID"
+      label: "Google Tracking ID"
+      required: true
+      default: "UA-67365892-5"
+      type: "string"
+    - variable: "WEBTRENDS_ID"
+      label: "WebTrends ID"
+      required: true
+      default: "dcs222rfg0jh2hpdaqwc2gmki_9r4q"
+      type: "string"
+
+services:
+  gp-finder-frontend:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 3000
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 5000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+      reinitializing_timeout: 60000
+
+  profiles-db:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 60000
+      healthy_threshold: 2
+      port: 27017
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 20000
+      strategy: recreate
+      request_line: ''
+      reinitializing_timeout: 60000
+
+  perf-report:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 80
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 5000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+      reinitializing_timeout: 60000
