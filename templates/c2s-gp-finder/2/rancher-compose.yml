@@ -7,9 +7,9 @@ catalog:
     Connecting to Services - GP Finder (Using Rancher LB)
   minimum_rancher_version: v0.59.0
   questions:
-    - variable: "gp_finder_docker_image_tag"
-      description: "gp-finder Docker image tag"
-      label: "gp-finder Docker image tag:"
+    - variable: "docker_image_tag"
+      description: "GP Finder docker image tag"
+      label: "GP Finder docker image tag:"
       required: true
       default: "latest"
       type: "string"
