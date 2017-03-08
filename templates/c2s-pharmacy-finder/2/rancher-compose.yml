@@ -36,6 +36,12 @@ catalog:
       label: "Splunk HTTP Event Collector Token:"
       required: true
       type: "string"
+    - variable: "traefik_domain"
+      description: "Traefik domain suffix"
+      label: "traefik domain suffix:"
+      required: true
+      default: "dev.c2s.nhschoices.net"
+      type: "string"
     - variable: "hotjar_id"
       description: "HotJar Tracking ID"
       label: "HotJar Tracking ID:"
