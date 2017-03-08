@@ -3,7 +3,7 @@ version: '2.1'
 services:
 
   gp-finder-frontend:
-    image: "nhsuk/gp-finder:${gp_finder_docker_image_tag}"
+    image: "nhsuk/gp-finder:${docker_image_tag}"
     environment:
       NODE_ENV: production
       SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
