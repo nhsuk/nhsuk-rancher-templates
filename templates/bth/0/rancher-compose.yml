@@ -36,7 +36,6 @@ catalog:
     - variable: "SECRET_KEY"
       label: "Secret Key"
       required: true
-      default: "bth-poc.settings.production"
       type: "string"
 
 services:
