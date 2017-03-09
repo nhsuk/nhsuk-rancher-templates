@@ -39,8 +39,5 @@ services:
   mongodb-pharmacy:
     image: "nhsuk/mongodb-pharmacy:${pharmacy_db_docker_image_tag}"
     labels:
-      traefik.enable: true
-      traefik.domain: ${traefik_domain}
-      traefik.port: 27017
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
