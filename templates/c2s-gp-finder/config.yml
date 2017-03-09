@@ -1,4 +1,4 @@
-name: C2S - GP Finder
+name: C2S - GP Finder (with Perf Tests)
 description: |
   Connecting to Services - GP Finder (require separate loadbalancer stack or traefik lb running in the stack)
 version: 1.0.2
