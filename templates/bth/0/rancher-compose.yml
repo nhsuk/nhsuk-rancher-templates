@@ -37,6 +37,11 @@ catalog:
       label: "Secret Key"
       required: true
       type: "string"
+    - variable: "TRAEFIK_DOMAIN"
+      label: "Traefik Domain"
+      default: "staging.beta.nhschoices.net"
+      required: true
+      type: "string"
 
 services:
   bth:
