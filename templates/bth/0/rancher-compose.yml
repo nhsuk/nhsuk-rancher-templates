@@ -1,0 +1,55 @@
+version: '2'
+
+catalog:
+  name: nhsuk_bth
+  version: 1.0.0
+  description: |
+    Behind the Headlines - Wagtail
+  minimum_rancher_version: v0.59.0
+  questions:
+    - variable: "DOCKER_IMAGE_TAG"
+      label: "BTH Docker Image Tag"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "DB_HOST"
+      label: "DB Host"
+      required: true
+      type: "string"
+    - variable: "DB_NAME"
+      label: "DB Name"
+      required: true
+      type: "string"
+    - variable: "DB_USER"
+      label: "DB User"
+      required: true
+      type: "string"
+    - variable: "DB_PASS"
+      label: "DB Password"
+      required: true
+      type: "string"
+    - variable: "DJANGO_SETTINGS_MODULE"
+      label: "Django Settings File"
+      required: true
+      default: "bth-poc.settings.production"
+      type: "string"
+    - variable: "SECRET_KEY"
+      label: "Secret Key"
+      required: true
+      default: "bth-poc.settings.production"
+      type: "string"
+
+services:
+  bth:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 3000
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 5000
+      strategy: recreate
+      request_line: GET "/admin" "HTTP/1.0"
+      reinitializing_timeout: 60000
