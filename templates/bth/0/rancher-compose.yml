@@ -31,7 +31,7 @@ catalog:
     - variable: "DJANGO_SETTINGS_MODULE"
       label: "Django Settings File"
       required: true
-      default: "bth-poc.settings.production"
+      default: "bth_poc.settings.production"
       type: "string"
     - variable: "SECRET_KEY"
       label: "Secret Key"
@@ -45,7 +45,7 @@ services:
     health_check:
       response_timeout: 5000
       healthy_threshold: 2
-      port: 3000
+      port: 8000
       unhealthy_threshold: 3
       initializing_timeout: 60000
       interval: 5000
