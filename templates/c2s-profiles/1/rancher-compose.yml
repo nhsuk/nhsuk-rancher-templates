@@ -7,48 +7,48 @@ catalog:
     Connecting to Services - Profiles (Using Rancher LB)
   minimum_rancher_version: v0.59.0
   questions:
-    - variable: "profiles_docker_image_tag"
+    - variable: "PROFILES_DOCKER_IMAGE_TAG"
       description: "profiles Docker image tag"
       label: "profiles Docker image tag:"
       required: true
       default: "latest"
       type: "string"
-    - variable: "profiles_db_docker_image_tag"
+    - variable: "PROFILES_DB_DOCKER_IMAGE_TAG"
       description: "profiles-db Docker image tag"
       label: "profiles-db Docker image tag:"
       required: true
       default: "latest"
       type: "string"
-    - variable: "splunk_hec_endpoint"
+    - variable: "SPLUNK_HEC_ENDPOINT"
       description: "Splunk HTTP Event Collector URL"
       label: "Splunk HTTP Event Collector URL:"
       required: true
       default: "https://splunk-collector.cloudapp.net:8088"
       type: "string"
-    - variable: "splunk_hec_token"
+    - variable: "SPLUNK_HEC_TOKEN"
       description: "Splunk HTTP Event Collector Token"
       label: "Splunk HTTP Event Collector Token:"
       required: true
       type: "string"
-    - variable: "traefik_domain"
+    - variable: "TRAEFIK_DOMAIN"
       description: "Traefik domain suffix"
       label: "traefik domain suffix:"
       required: true
       default: "dev.c2s.nhschoices.net"
       type: "string"
-    - variable: "hotjar_id"
+    - variable: "HOTJAR_ID"
       description: "HotJar Tracking ID"
       label: "HotJar Tracking ID:"
       required: true
       default: "265857"
       type: "string"
-    - variable: "google_id"
+    - variable: "GOOGLE_ID"
       description: "Google Tracking ID"
       label: "Google Tracking ID:"
       required: true
       default: "UA-67365892-5"
       type: "string"
-    - variable: "webtrends_id"
+    - variable: "WEBTRENDS_ID"
       description: "WebTrends ID"
       label: "WebTrends ID:"
       required: true
