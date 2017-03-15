@@ -3,18 +3,18 @@ version: '2'
 services:
 
   c2s-frontend:
-    image: "nhsuk/connecting-to-services:${connecting_to_services_docker_image_tag}"
+    image: "nhsuk/connecting-to-services:${CONNECTING_TO_SERVICES_DOCKER_IMAGE_TAG}"
     environment:
       NODE_ENV: production
-      SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
-      SPLUNK_HEC_TOKEN: ${splunk_hec_token}
-      HOTJAR_ANALYTICS_TRACKING_ID: ${hotjar_id}
-      GOOGLE_ANALYTICS_TRACKING_ID: ${google_id}
-      WEBTRENDS_ANALYTICS_TRACKING_ID: ${webtrends_id}
+      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
+      SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+      HOTJAR_ANALYTICS_TRACKING_ID: ${HOTJAR_ID}
+      GOOGLE_ANALYTICS_TRACKING_ID: ${GOOGLE_ID}
+      WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ID}
       API_BASE_URL: 'http://nearby-services-api:3001'
     labels:
       traefik.enable: stack
-      traefik.domain: ${traefik_domain}
+      traefik.domain: ${TRAEFIK_DOMAIN}
       traefik.port: 3000
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
@@ -22,14 +22,14 @@ services:
     - nearby-services-api:nearby-services-api
 
   nearby-services-api:
-    image: "nhsuk/nearby-services-api:${nearby_services_api_docker_image_tag}"
+    image: "nhsuk/nearby-services-api:${NEARBY_SERVICES_API_DOCKER_IMAGE_TAG}"
     environment:
       NODE_ENV: production
-      SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
-      SPLUNK_HEC_TOKEN: ${splunk_hec_token}
+      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT}
+      SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
     labels:
       traefik.enable: true
-      traefik.domain: ${traefik_domain}
+      traefik.domain: ${TRAEFIK_DOMAIN}
       traefik.port: 3001
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
@@ -37,7 +37,7 @@ services:
     - mongodb-pharmacy:mongo
 
   mongodb-pharmacy:
-    image: "nhsuk/mongodb-pharmacy:${pharmacy_db_docker_image_tag}"
+    image: "nhsuk/mongodb-pharmacy:${PHARMACY_DB_DOCKER_IMAGE_TAG}"
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
