@@ -49,5 +49,6 @@ The recommended way to test changes is the following (Steps 1-4 *could* be skipp
 5. Pull Request to get it into master.
 6. All new PR builds will now use this latest template.
 7. Upgrade Staging stacks and any PR builds (if you need to).
+   ![Upgrade GUI](https://raw.githubusercontent.com/nhsuk/nhsuk-rancher-templates/master/assets/upgrade_gui.png)
 8. Pull Request for `master` -> `production`
 9. Upgrade production stacks.
