@@ -1,0 +1,30 @@
+version: '2.1'
+
+services:
+
+  gp-finder-frontend:
+    image: "nhsuk/gp-finder:${docker_image_tag}"
+    environment:
+      NODE_ENV: production
+      SPLUNK_HEC_ENDPOINT: ${splunk_hec_endpoint}
+      SPLUNK_HEC_TOKEN: ${splunk_hec_token}
+      HOTJAR_ANALYTICS_TRACKING_ID: ${hotjar_id}
+      GOOGLE_ANALYTICS_TRACKING_ID: ${google_id}
+      WEBTRENDS_ANALYTICS_TRACKING_ID: ${webtrends_id}
+    labels:
+      traefik.enable: stack
+      traefik.domain: ${traefik_domain}
+      traefik.port: 3000
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
+    links:
+    - profiles-db:mongo
+
+  profiles-db:
+    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag}"
+    labels:
+      traefik.enable: true
+      traefik.domain: ${traefik_domain}
+      traefik.port: 27017
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
