@@ -12,19 +12,25 @@ catalog:
       label: "Stack:"
       required: true
       default: "c2s-pharmacy-finder/c2s-frontend"
-      type: "string"
+      type: service
     - variable: "PROFILES_FRONTEND_SERVICE"
       description: "The profiles 'stack/service' which the load balancer will route to"
       label: "Stack:"
       required: true
       default: "c2s-profiles/profiles-frontend"
-      type: "string"
+      type: service
     - variable: "GP_FINDER_FRONTEND_SERVICE"
       description: "The GP Finder 'stack/service' which the load balancer will route to"
       label: "Stack:"
       required: true
       default: "c2s-gp-finder/gp-finder-frontend"
-      type: "string"
+      type: service
+    - variable: "SSL_CERTIFICATE"
+      description: "The SSL Certificate to Use"
+      label: "SSL Certificate"
+      required: true
+      default: c2s
+      type: certificate
 
 services:
   http-https-redirect:
@@ -34,7 +40,7 @@ services:
     start_on_create: true
     lb_config:
       certs: []
-      default_cert: c2s
+      default_cert: ${SSL_CERTIFICATE}
       port_rules:
       - hostname: ''
         priority: 1
