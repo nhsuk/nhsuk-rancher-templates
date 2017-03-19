@@ -2,7 +2,7 @@ version: '2'
 
 services:
   bth:
-    image: nhsuk/bth-wagtail:${DOCKER_IMAGE_TAG}
+    image: nhsuk/bth-wagtail:${BTH_DOCKER_IMAGE_TAG}
     environment:
       DB_HOST: ${DB_HOST}
       DB_NAME: ${DB_NAME}

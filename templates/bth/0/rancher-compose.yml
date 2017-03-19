@@ -7,7 +7,7 @@ catalog:
     Behind the Headlines - Wagtail
   minimum_rancher_version: v0.59.0
   questions:
-    - variable: "DOCKER_IMAGE_TAG"
+    - variable: "BTH_DOCKER_IMAGE_TAG"
       label: "BTH Docker Image Tag"
       required: true
       default: "latest"
