@@ -28,6 +28,18 @@ catalog:
       label: "DB Password"
       required: true
       type: "string"
+    - variable: "DB_EMAIL"
+      label: "User for Wagtail admin"
+      required: true
+      type: "string"
+    - variable: "SA_USER"
+      label: "DB SA User"
+      required: true
+      type: "string"
+    - variable: "SA_PASSWORD"
+      label: "DB SA Password"
+      required: true
+      type: "string"
     - variable: "DJANGO_SETTINGS_MODULE"
       label: "Django Settings File"
       required: true
