@@ -36,7 +36,7 @@ catalog:
       label: "DB SA User"
       required: true
       type: "string"
-    - variable: "SA_PASS"
+    - variable: "SA_PASSWORD"
       label: "DB SA Password"
       required: true
       type: "string"
