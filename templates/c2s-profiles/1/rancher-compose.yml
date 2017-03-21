@@ -4,7 +4,7 @@ catalog:
   name: nhsuk_profiles
   version: 1.1.1
   description: |
-    Connecting to Services - Profiles (Using Rancher LB)
+    Connecting to Services - Profiles
   minimum_rancher_version: v0.59.0
   questions:
     - variable: "PROFILES_DOCKER_IMAGE_TAG"
@@ -18,17 +18,6 @@ catalog:
       label: "profiles-db Docker image tag:"
       required: true
       default: "latest"
-      type: "string"
-    - variable: "SPLUNK_HEC_ENDPOINT"
-      description: "Splunk HTTP Event Collector URL"
-      label: "Splunk HTTP Event Collector URL:"
-      required: true
-      default: "https://splunk-collector.cloudapp.net:8088"
-      type: "string"
-    - variable: "SPLUNK_HEC_TOKEN"
-      description: "Splunk HTTP Event Collector Token"
-      label: "Splunk HTTP Event Collector Token:"
-      required: true
       type: "string"
     - variable: "TRAEFIK_DOMAIN"
       description: "Traefik domain suffix"
