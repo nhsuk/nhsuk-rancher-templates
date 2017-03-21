@@ -1,15 +1,15 @@
 version: '2'
 
 catalog:
-  name: nhsuk_gp_finder
-  version: 1.0.0
+  name: nhsuk_profiles
+  version: 1.1.1
   description: |
-    Connecting to Services - GP Finder (Using Rancher LB)
+    Connecting to Services - Profiles
   minimum_rancher_version: v0.59.0
   questions:
-    - variable: "GP_FINDER_DOCKER_IMAGE_TAG"
-      description: "gp-finder Docker image tag"
-      label: "gp-finder Docker image tag:"
+    - variable: "PROFILES_DOCKER_IMAGE_TAG"
+      description: "profiles Docker image tag"
+      label: "profiles Docker image tag:"
       required: true
       default: "latest"
       type: "string"
@@ -19,16 +19,11 @@ catalog:
       required: true
       default: "latest"
       type: "string"
-    - variable: "SPLUNK_HEC_ENDPOINT"
-      description: "Splunk HTTP Event Collector URL"
-      label: "Splunk HTTP Event Collector URL:"
+    - variable: "TRAEFIK_DOMAIN"
+      description: "Traefik domain suffix"
+      label: "traefik domain suffix:"
       required: true
-      default: "https://splunk-collector.cloudapp.net:8088"
-      type: "string"
-    - variable: "SPLUNK_HEC_TOKEN"
-      description: "Splunk HTTP Event Collector Token"
-      label: "Splunk HTTP Event Collector Token:"
-      required: true
+      default: "dev.c2s.nhschoices.net"
       type: "string"
     - variable: "HOTJAR_ID"
       description: "HotJar Tracking ID"
@@ -50,7 +45,7 @@ catalog:
       type: "string"
 
 services:
-  gp-finder-frontend:
+  profiles-frontend:
     scale: 1
     start_on_create: true
     health_check:

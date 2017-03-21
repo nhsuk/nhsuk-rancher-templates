@@ -2,53 +2,48 @@ version: '2'
 
 catalog:
   name: nhsuk_c2s
-  version: 1.1.0
+  version: 1.1.1
   description: |
-    Connecting to Services (Using Rancher LB)
+    Connecting to Services - Pharmacy Finder
   minimum_rancher_version: v0.59.0
   questions:
-    - variable: "c2s_docker_image_tag"
-      description: "c2s Docker image tag"
-      label: "c2s Docker image tag:"
+    - variable: "CONNECTING_TO_SERVICES_DOCKER_IMAGE_TAG"
+      description: "C2S docker image tag"
+      label: "C2S docker image tag:"
       required: true
       default: "latest"
       type: "string"
-    - variable: "nearbyservices_docker_image_tag"
-      description: "nearby-services-api Docker image tag"
-      label: "nearby-services-api Docker image tag:"
+    - variable: "NEARBY_SERVICES_API_DOCKER_IMAGE_TAG"
+      description: "Nearby Services API docker image tag"
+      label: "Nearby Services API docker image tag"
       required: true
       default: "latest"
       type: "string"
-    - variable: "mongodb_pharmacy_docker_image_tag"
-      description: "mongodb_pharmacy Docker image tag"
-      label: "mongodb_pharmacy Docker image tag:"
+    - variable: "PHARMACY_DB_DOCKER_IMAGE_TAG"
+      description: "Pharmacy DB Docker image tag"
+      label: "Pharmacy DB Docker image tag"
       required: true
       default: "latest"
       type: "string"
-    - variable: "splunk_hec_endpoint"
-      description: "Splunk HTTP Event Collector URL"
-      label: "Splunk HTTP Event Collector URL:"
+    - variable: "TRAEFIK_DOMAIN"
+      description: "Traefik domain suffix"
+      label: "traefik domain suffix:"
       required: true
-      default: "https://splunk-collector.cloudapp.net:8088"
+      default: "dev.c2s.nhschoices.net"
       type: "string"
-    - variable: "splunk_hec_token"
-      description: "Splunk HTTP Event Collector Token"
-      label: "Splunk HTTP Event Collector Token:"
-      required: true
-      type: "string"
-    - variable: "hotjar_id"
+    - variable: "HOTJAR_ID"
       description: "HotJar Tracking ID"
       label: "HotJar Tracking ID:"
       required: true
       default: "265857"
       type: "string"
-    - variable: "google_id"
+    - variable: "GOOGLE_ID"
       description: "Google Tracking ID"
       label: "Google Tracking ID:"
       required: true
       default: "UA-67365892-5"
       type: "string"
-    - variable: "webtrends_id"
+    - variable: "WEBTRENDS_ID"
       description: "WebTrends ID"
       label: "WebTrends ID:"
       required: true

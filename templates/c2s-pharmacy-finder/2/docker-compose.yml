@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+
+  c2s-frontend:
+    image: "nhsuk/connecting-to-services:${CONNECTING_TO_SERVICES_DOCKER_IMAGE_TAG}"
+    environment:
+      NODE_ENV: production
+      HOTJAR_ANALYTICS_TRACKING_ID: ${HOTJAR_ID}
+      GOOGLE_ANALYTICS_TRACKING_ID: ${GOOGLE_ID}
+      WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ID}
+      API_BASE_URL: 'http://nearby-services-api:3001'
+    labels:
+      traefik.enable: stack
+      traefik.domain: ${TRAEFIK_DOMAIN}
+      traefik.port: 3000
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
+    links:
+    - nearby-services-api:nearby-services-api
+
+  nearby-services-api:
+    image: "nhsuk/nearby-services-api:${NEARBY_SERVICES_API_DOCKER_IMAGE_TAG}"
+    environment:
+      NODE_ENV: production
+    labels:
+      traefik.enable: true
+      traefik.domain: ${TRAEFIK_DOMAIN}
+      traefik.port: 3001
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
+    links:
+    - mongodb-pharmacy:mongo
+
+  mongodb-pharmacy:
+    image: "nhsuk/mongodb-pharmacy:${PHARMACY_DB_DOCKER_IMAGE_TAG}"
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true

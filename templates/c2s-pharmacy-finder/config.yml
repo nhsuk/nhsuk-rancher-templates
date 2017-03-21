@@ -1,6 +1,6 @@
 name: C2S - Pharmacy Finder
 description: |
   Connecting to Services - Pharmacy Finder (requires separate loadbalancer stack or traefik lb running in the stack)
-version: 1.0.0
+version: 1.1.1
 category: nhsuk beta pharmacy-finder
 projectURL: https://github.com/nhsuk/connecting-to-services

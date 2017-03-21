@@ -2,9 +2,9 @@ version: '2'
 
 catalog:
   name: nhsuk_gp_finder
-  version: 1.0.0
+  version: 1.0.1
   description: |
-    Connecting to Services - GP Finder (Using Rancher LB)
+    Connecting to Services - GP Finder
   minimum_rancher_version: v0.59.0
   questions:
     - variable: "GP_FINDER_DOCKER_IMAGE_TAG"
@@ -19,16 +19,11 @@ catalog:
       required: true
       default: "latest"
       type: "string"
-    - variable: "SPLUNK_HEC_ENDPOINT"
-      description: "Splunk HTTP Event Collector URL"
-      label: "Splunk HTTP Event Collector URL:"
+    - variable: "TRAEFIK_DOMAIN"
+      description: "Traefik domain suffix"
+      label: "traefik domain suffix:"
       required: true
-      default: "https://splunk-collector.cloudapp.net:8088"
-      type: "string"
-    - variable: "SPLUNK_HEC_TOKEN"
-      description: "Splunk HTTP Event Collector Token"
-      label: "Splunk HTTP Event Collector Token:"
-      required: true
+      default: "dev.c2s.nhschoices.net"
       type: "string"
     - variable: "HOTJAR_ID"
       description: "HotJar Tracking ID"
