@@ -1,0 +1,68 @@
+version: '2'
+
+catalog:
+  name: nhsuk_registry_with_ap
+  version: 1.0.0
+  description: |
+    Conditions
+  questions:
+    - variable: "REGISTER_WITH_A_GP_DOCKER_TAG"
+      label: "profiles Docker image tag:"
+      description: ""
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "SESSION_SECRET"
+      label: "SESSION_SECRET"
+      description: "Password for signing the session cookie"
+      required: true
+      type: "string"
+    - variable: "EMAIL_USERNAME"
+      label: "EMAIL_USERNAME"
+      description: "Username for Exchange Webservice"
+      required: true
+      type: "string"
+    - variable: "EMAIL_PASSWORD"
+      label: "EMAIL_PASSWORD"
+      description: "Password for Exchange Webservice"
+      required: true
+      type: "string"
+    - variable: "EMAIL_HOST"
+      label: "Exchange Webservice Host"
+      description: "https://email.nhs.net"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "POSTCODE_API_KEY"
+      label: "POSTCODE_API_KEY"
+      description: "Api key for getAddress.io"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "POSTCODE_API_HOST"
+      label: "POSTCODE_API_HOST"
+      description: "Api host for getAddress.io"
+      required: true
+      type: "string"
+    - variable: "TRAEFIK_DOMAIN"
+      label: "TRAEFIK_DOMAIN"
+      description: "Domain used to build traefix domain path: {STACK_NAME}.{DOMAIN}"
+      required: true
+      default: "dev.beta.nhschoices.net"
+      type: "string"
+
+services:
+
+  register-with-a-gp:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 3333
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 20000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+      reinitializing_timeout: 60000
