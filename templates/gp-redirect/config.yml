@@ -1,0 +1,6 @@
+name: GP Redirect
+description: |
+  GP Redirect - forwards requests onto appropriate page on profiles site
+version: 1.0.0
+category: nhsuk beta gp-redirect
+projectURL: https://github.com/nhsuk/gp-redirect
