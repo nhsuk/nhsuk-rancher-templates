@@ -1,0 +1,68 @@
+version: '2'
+
+services:
+
+  c2s-frontend:
+    image: "nhsuk/connecting-to-services:${CONNECTING_TO_SERVICES_DOCKER_IMAGE_TAG}"
+    environment:
+      NODE_ENV: production
+      HOTJAR_ANALYTICS_TRACKING_ID: ${HOTJAR_ID}
+      GOOGLE_ANALYTICS_TRACKING_ID: ${GOOGLE_ID}
+      WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ID}
+      API_BASE_URL: 'http://nearby-services-api:3001'
+    labels:
+{{- if eq .Values.PERF_TEST "true" }}
+      io.rancher.sidekicks: perf-tester, perf-report
+{{- end }}
+      traefik.enable: stack
+      traefik.domain: ${TRAEFIK_DOMAIN}
+      traefik.port: 3000
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
+    links:
+    - nearby-services-api:nearby-services-api
+
+  nearby-services-api:
+    image: "nhsuk/nearby-services-api:${NEARBY_SERVICES_API_DOCKER_IMAGE_TAG}"
+    environment:
+      NODE_ENV: production
+    labels:
+      traefik.enable: true
+      traefik.domain: ${TRAEFIK_DOMAIN}
+      traefik.port: 3001
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
+    links:
+    - mongodb-pharmacy:mongo
+
+  mongodb-pharmacy:
+    image: "nhsuk/mongodb-pharmacy:${PHARMACY_DB_DOCKER_IMAGE_TAG}"
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
+
+{{- if eq .Values.PERF_TEST "true" }}
+  perf-tester:
+    image: nhsuk/c2s-perf-tester
+    volumes_from:
+      - c2s-frontend
+    links:
+      - c2s-frontend
+    command:
+      - jmeter -n -t /code/perf-tests/http.jmx -l /results.jlt -e -o /test-results/
+    labels:
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
+      io.rancher.container.start_once: "true"
+      io.rancher.container.pull_image: always
+
+  perf-report:
+    image: nhsuk/c2s-perf-report
+    volumes_from:
+      - perf-tester
+    labels:
+      traefik.enable: "true"
+      traefik.domain: ${TRAEFIK_DOMAIN}
+      traefik.port: 80
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true
+{{- end }}
