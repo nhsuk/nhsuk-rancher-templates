@@ -1,0 +1,6 @@
+name: Register with a GP
+description: |
+  Register with a GP
+version: 1.0.0
+category: nhsuk beta register-with-a-gp
+projectURL: https://github.com/nhsuk/register-with-a-gp-beta-web

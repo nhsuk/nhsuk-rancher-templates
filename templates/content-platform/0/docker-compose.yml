@@ -1,8 +1,8 @@
 version: '2'
 
 services:
-  bth:
-    image: nhsuk/bth-wagtail:${BTH_DOCKER_IMAGE_TAG}
+  wagtail:
+    image: nhsuk/content-platform:${CONTENT_PLATFORM_DOCKER_IMAGE_TAG}
     environment:
       DB_HOST: ${DB_HOST}
       DB_NAME: ${DB_NAME}
@@ -10,8 +10,10 @@ services:
       DB_PASS: ${DB_PASS}
       DB_PORT: 1433
       SA_USER: ${SA_USER}
-      SA_PASSWORD: ${SA_PASSWORD}
-      DB_EMAIL: ${DB_EMAIL}
+      SA_PASS: ${SA_PASS}
+      WAGTAIL_SU_EMAIL: ${WAGTAIL_SU_EMAIL}
+      WAGTAIL_SU_USER: ${WAGTAIL_SU_USER}
+      WAGTAIL_SU_PASS: ${WAGTAIL_SU_PASS}
       DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}
       SECRET_KEY: ${SECRET_KEY}
     labels:
