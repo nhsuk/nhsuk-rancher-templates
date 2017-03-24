@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+
+  splunk-uf:
+    image: nhsuk/rancher-splunk-uf
+    environment:
+      SPLUNK_START_ARGS: --accept-license --answer-yes
+      SPLUNK_USER: root
+      CACERT: ${CACERT}
+      CERT: ${CERT}
+      CERT_PASS: ${CERT_PASS}
+      INDEXER_HOST: ${INDEXER_HOST}
+      INDEXER_PORT: ${INDEXER_PORT}
+    volumes:
+    - /var/lib/docker/containers:/host/containers:ro
+    - /var/log:/docker/log:ro
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.global: true
+    network_mode: host
+    privileged: true

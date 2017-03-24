@@ -1,0 +1,5 @@
+name: Splunk Forwarder
+description: |
+  Splunk forwarder
+version: 1.0.0
+category: nhsuk beta splunk-forwarder
