@@ -1,0 +1,29 @@
+version: '2'
+
+catalog:
+  name: nhsuk_splunk_forwarder
+  version: 1.0.0
+  description: |
+    NHSuk - Splunk Forwarder
+  minimum_rancher_version: v0.59.0
+  questions:
+    - variable: "INDEXER_HOST"
+      label: "Indexer Host"
+      required: true
+      type: string
+    - variable: "INDEXER_PORT"
+      label: "Indexer Port"
+      required: true
+      type: int
+    - variable: "CACERT"
+      label: "CA Certificate"
+      required: true
+      type: multiline
+    - variable: "CERT"
+      label: "Certificate for forwarder"
+      required: true
+      type: multiline
+    - variable: "CERT_PASS"
+      label: "Certificate for forwarder password"
+      required: true
+      type: password
