@@ -59,7 +59,7 @@ catalog:
       type: "string"
     - variable: "TRAEFIK_DOMAIN"
       label: "Traefik Domain"
-      default: "staging.beta.nhschoices.net"
+      default: "dev.beta.nhschoices.net"
       required: true
       type: "string"
 
