@@ -28,15 +28,15 @@ catalog:
       label: "DB Password"
       required: true
       type: "string"
-    - variable: "WAGTAIL_SU_USER"
+    - variable: "WAGTAIL_USER"
       label: "Username for Wagtail superuser"
       required: true
       type: "string"
-    - variable: "WAGTAIL_SU_PASS"
+    - variable: "WAGTAIL_PASS"
       label: "Password for Wagtail superuser"
       required: true
       type: "string"
-    - variable: "WAGTAIL_SU_EMAIL"
+    - variable: "WAGTAIL_EMAIL"
       label: "Email address for Wagtail superuser"
       required: true
       type: "string"
@@ -44,14 +44,14 @@ catalog:
       label: "DB SA User"
       required: true
       type: "string"
-    - variable: "SA_PASS"
+    - variable: "SA_PASSWORD"
       label: "DB SA Password"
       required: true
       type: "string"
     - variable: "DJANGO_SETTINGS_MODULE"
       label: "Django Settings File"
       required: true
-      default: "bth_poc.settings.production"
+      default: "project_settings.settings.production"
       type: "string"
     - variable: "SECRET_KEY"
       label: "Secret Key"
