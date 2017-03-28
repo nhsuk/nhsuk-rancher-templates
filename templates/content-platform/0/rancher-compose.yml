@@ -12,6 +12,16 @@ catalog:
       required: true
       default: "latest"
       type: "string"
+    - variable: "DB_TYPE"
+      label: "Database Option"
+      required: true
+      default: "New SQL Azure"
+      type: enum
+      options:
+        - "New SQL Azure"
+        - "Integration SQL Azure Instance"
+        - "SQL Local"
+        - "SQLITE"
     - variable: "DB_HOST"
       label: "DB Host"
       required: true

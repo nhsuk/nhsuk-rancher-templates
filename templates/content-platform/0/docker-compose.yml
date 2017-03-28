@@ -4,11 +4,6 @@ services:
   wagtail:
     image: nhsuk/content-platform:${CONTENT_PLATFORM_DOCKER_IMAGE_TAG}
     environment:
-      DB_HOST: ${DB_HOST}
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
-      DB_PORT: 1433
       SA_USER: ${SA_USER}
       SA_PASSWORD: ${SA_PASSWORD}
       WAGTAIL_EMAIL: ${WAGTAIL_EMAIL}
@@ -16,7 +11,28 @@ services:
       WAGTAIL_PASS: ${WAGTAIL_PASS}
       DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}
       SECRET_KEY: ${SECRET_KEY}
+{{- if ne .Values.DB_TYPE "SQLITE" }}
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_TYPE: ${DB_TYPE}
+      DB_PORT: 1433
+{{- end }}
+
+{{- if eq .Values.DB_TYPE "SQL Local" }}
+    links:
+      - sql:sql
+{{- end }}
     labels:
       traefik.enable: stack
       traefik.domain: ${TRAEFIK_DOMAIN}
       traefik.port: 8000
+
+{{- if eq .Values.DB_TYPE "SQL Local" }}
+  sql:
+    image: microsoft/mssql-server-linux
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: ${SA_PASS}
+{{- end }}
