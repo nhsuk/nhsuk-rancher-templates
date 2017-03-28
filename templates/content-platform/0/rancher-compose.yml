@@ -59,7 +59,7 @@ catalog:
       type: "string"
     - variable: "TRAEFIK_DOMAIN"
       label: "Traefik Domain"
-      default: "staging.beta.nhschoices.net"
+      default: "dev.beta.nhschoices.net"
       required: true
       type: "string"
 
@@ -70,10 +70,9 @@ services:
     health_check:
       response_timeout: 5000
       healthy_threshold: 2
-      port: 8000
+      port: 80
       unhealthy_threshold: 3
       initializing_timeout: 60000
       interval: 5000
       strategy: recreate
-      request_line: GET "/admin" "HTTP/1.0"
       reinitializing_timeout: 60000
