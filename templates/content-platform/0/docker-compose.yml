@@ -20,3 +20,4 @@ services:
       traefik.enable: stack
       traefik.domain: ${TRAEFIK_DOMAIN}
       traefik.port: 8000
+      io.rancher.container.pull_image: always
