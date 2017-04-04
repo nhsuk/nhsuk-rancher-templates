@@ -10,13 +10,14 @@ services:
       DB_PASS: ${DB_PASS}
       DB_PORT: 1433
       SA_USER: ${SA_USER}
-      SA_PASS: ${SA_PASS}
-      WAGTAIL_SU_EMAIL: ${WAGTAIL_SU_EMAIL}
-      WAGTAIL_SU_USER: ${WAGTAIL_SU_USER}
-      WAGTAIL_SU_PASS: ${WAGTAIL_SU_PASS}
+      SA_PASSWORD: ${SA_PASSWORD}
+      WAGTAIL_EMAIL: ${WAGTAIL_EMAIL}
+      WAGTAIL_USER: ${WAGTAIL_USER}
+      WAGTAIL_PASS: ${WAGTAIL_PASS}
       DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE}
       SECRET_KEY: ${SECRET_KEY}
     labels:
       traefik.enable: stack
       traefik.domain: ${TRAEFIK_DOMAIN}
       traefik.port: 8000
+      io.rancher.container.pull_image: always
