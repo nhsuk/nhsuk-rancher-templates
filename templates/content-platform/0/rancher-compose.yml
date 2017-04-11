@@ -40,6 +40,20 @@ catalog:
       label: "Email address for Wagtail superuser"
       required: true
       type: "string"
+    - variable: "AZURE_ACCOUNT_NAME"
+      label: "Azure Storage Account name"
+      required: true
+      type: "string"
+      default: betastore
+    - variable: "AZURE_ACCOUNT_KEY"
+      label: "Azure Storage Account key"
+      required: true
+      type: "string"
+    - variable: "AZURE_CONTAINER"
+      label: "Azure Storage Container"
+      required: true
+      type: "string"
+      default: dev
     - variable: "SA_USER"
       label: "DB SA User"
       required: true
