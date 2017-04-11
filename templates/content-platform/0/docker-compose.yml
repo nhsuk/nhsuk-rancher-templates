@@ -1,6 +1,21 @@
 version: '2'
 
 services:
+
+  nginx:
+    image: nhsuk/content-platform:${CONTENT_PLATFORM_DOCKER_IMAGE_TAG}
+    depends_on:
+      - wagtail
+    links:
+      - wagtail
+    restart: always
+    command: nginx
+    labels:
+      traefik.enable: stack
+      traefik.domain: ${TRAEFIK_DOMAIN}
+      traefik.port: 80
+      io.rancher.container.pull_image: always
+
   wagtail:
     image: nhsuk/content-platform:${CONTENT_PLATFORM_DOCKER_IMAGE_TAG}
     environment:
@@ -22,7 +37,4 @@ services:
       AZURE_AD_CLIENT_ID: ${AZURE_AD_CLIENT_ID}
       AZURE_AD_CLIENT_KEY: ${AZURE_AD_CLIENT_KEY}
     labels:
-      traefik.enable: stack
-      traefik.domain: ${TRAEFIK_DOMAIN}
-      traefik.port: 8000
       io.rancher.container.pull_image: always
