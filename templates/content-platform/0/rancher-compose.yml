@@ -49,6 +49,14 @@ catalog:
       label: "Azure Storage Account key"
       required: true
       type: "string"
+    - variable: "AZURE_AD_CLIENT_ID"
+      label: "Azure AD Client ID"
+      required: true
+      type: "string"
+    - variable: "AZURE_AD_CLIENT_KEY"
+      label: "Azure AD Client key"
+      required: true
+      type: "string"
     - variable: "AZURE_CONTAINER"
       label: "Azure Storage Container"
       required: true

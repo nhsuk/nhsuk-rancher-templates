@@ -19,6 +19,8 @@ services:
       AZURE_ACCOUNT_NAME: ${AZURE_ACCOUNT_NAME}
       AZURE_ACCOUNT_KEY: ${AZURE_ACCOUNT_KEY}
       AZURE_CONTAINER: ${AZURE_CONTAINER}
+      AZURE_AD_CLIENT_ID: ${AZURE_AD_CLIENT_ID}
+      AZURE_AD_CLIENT_KEY: ${AZURE_AD_CLIENT_KEY}
     labels:
       traefik.enable: stack
       traefik.domain: ${TRAEFIK_DOMAIN}
