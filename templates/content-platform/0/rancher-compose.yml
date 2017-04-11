@@ -86,6 +86,19 @@ catalog:
       type: "string"
 
 services:
+  nginx:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 80
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 5000
+      strategy: recreate
+      reinitializing_timeout: 60000
+
   wagtail:
     scale: 1
     start_on_create: true
