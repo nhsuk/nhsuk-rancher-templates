@@ -79,7 +79,7 @@ services:
       reinitializing_timeout: 60000
     start_on_create: true
 
-  mongodb-pharmacy:
+  pharmacy-db:
     scale: 1
     health_check:
       response_timeout: 60000
