@@ -1,0 +1,5 @@
+name: NHSUK MongoDB
+description: |
+  NHSUK MongoDB Replica Set.
+version: 3.4
+category: Databases
