@@ -1,0 +1,100 @@
+version: '2'
+
+catalog:
+  name: nhsuk_content_platform
+  version: 1.1.0
+  description: |
+    NHSUK Content Platform - Wagtail
+  minimum_rancher_version: v0.59.0
+  questions:
+    - variable: "CONTENT_PLATFORM_DOCKER_IMAGE_TAG"
+      label: "Content Platform Docker Image Tag"
+      required: true
+      default: "latest"
+      type: "string"
+    - variable: "DB_HOST"
+      label: "DB Host"
+      required: true
+      type: "string"
+    - variable: "DB_NAME"
+      label: "DB Name"
+      required: true
+      type: "string"
+    - variable: "DB_USER"
+      label: "DB User"
+      required: true
+      type: "string"
+    - variable: "DB_PASS"
+      label: "DB Password"
+      required: true
+      type: "string"
+    - variable: "WAGTAIL_USER"
+      label: "Username for Wagtail superuser"
+      required: true
+      type: "string"
+    - variable: "WAGTAIL_PASS"
+      label: "Password for Wagtail superuser"
+      required: true
+      type: "string"
+    - variable: "WAGTAIL_EMAIL"
+      label: "Email address for Wagtail superuser"
+      required: true
+      type: "string"
+    - variable: "AZURE_ACCOUNT_NAME"
+      label: "Azure Storage Account name"
+      required: true
+      type: "string"
+      default: betastore
+    - variable: "AZURE_ACCOUNT_KEY"
+      label: "Azure Storage Account key"
+      required: true
+      type: "string"
+    - variable: "AZURE_AD_CLIENT_ID"
+      label: "Azure AD Client ID"
+      required: true
+      type: "string"
+    - variable: "AZURE_AD_CLIENT_KEY"
+      label: "Azure AD Client key"
+      required: true
+      type: "string"
+    - variable: "AZURE_CONTAINER"
+      label: "Azure Storage Container"
+      required: true
+      type: "string"
+      default: dev
+    - variable: "SA_USER"
+      label: "DB SA User"
+      required: true
+      type: "string"
+    - variable: "SA_PASSWORD"
+      label: "DB SA Password"
+      required: true
+      type: "string"
+    - variable: "DJANGO_SETTINGS_MODULE"
+      label: "Django Settings File"
+      required: true
+      default: "project_settings.settings.production"
+      type: "string"
+    - variable: "SECRET_KEY"
+      label: "Secret Key"
+      required: true
+      type: "string"
+    - variable: "TRAEFIK_DOMAIN"
+      label: "Traefik Domain"
+      default: "dev.beta.nhschoices.net"
+      required: true
+      type: "string"
+
+services:
+  wagtail:
+    scale: 1
+    start_on_create: true
+    health_check:
+      response_timeout: 5000
+      healthy_threshold: 2
+      port: 8000
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 5000
+      strategy: recreate
+      reinitializing_timeout: 60000
