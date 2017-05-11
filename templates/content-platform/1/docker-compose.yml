@@ -24,3 +24,6 @@ services:
       AZURE_AD_CLIENT_KEY: ${AZURE_AD_CLIENT_KEY}
     labels:
       io.rancher.container.pull_image: always
+      traefik.enable: stack
+      traefik.domain: ${TRAEFIK_DOMAIN}
+      traefik.port: 8000
