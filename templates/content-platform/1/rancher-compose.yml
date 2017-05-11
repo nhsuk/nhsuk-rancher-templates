@@ -28,11 +28,11 @@ catalog:
       label: "DB Password"
       required: true
       type: "string"
-      default: N
     - variable: "DB_FORCE_MIGRATE"
       label: "Force run DB migrations? (Y/N)"
       required: "true"
       type: "string"
+      default: N
     - variable: "WAGTAIL_USER"
       label: "Username for Wagtail superuser"
       required: true
