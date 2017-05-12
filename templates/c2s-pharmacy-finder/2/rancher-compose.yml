@@ -29,7 +29,7 @@ catalog:
       description: "Traefik domain suffix"
       label: "traefik domain suffix:"
       required: true
-      default: "dev.c2s.nhschoices.net"
+      default: "dev.beta.nhschoices.net"
       type: "string"
     - variable: "HOTJAR_ID"
       description: "HotJar Tracking ID"
@@ -79,7 +79,7 @@ services:
       reinitializing_timeout: 60000
     start_on_create: true
 
-  mongodb-pharmacy:
+  pharmacy-db:
     scale: 1
     health_check:
       response_timeout: 60000

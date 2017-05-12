@@ -30,10 +30,10 @@ services:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
     links:
-    - mongodb-pharmacy:mongo
+    - pharmacy-db:mongo
 
-  mongodb-pharmacy:
-    image: "nhsuk/mongodb-pharmacy:${PHARMACY_DB_DOCKER_IMAGE_TAG}"
+  pharmacy-db:
+    image: "nhsuk/pharmacy-db:${PHARMACY_DB_DOCKER_IMAGE_TAG}"
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
