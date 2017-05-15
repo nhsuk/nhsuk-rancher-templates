@@ -84,6 +84,14 @@ catalog:
       default: "dev.beta.nhschoices.net"
       required: true
       type: "string"
+    - variable: "FEEDBACK_API_URL"
+      label: "Feedback API URL"
+      required: true
+      type: "string"
+    - variable: "FEEDBACK_API_KEY"
+      label: "Feedback API key"
+      required: true
+      type: "string"
 
 services:
   wagtail:
