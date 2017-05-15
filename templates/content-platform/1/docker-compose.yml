@@ -22,6 +22,8 @@ services:
       AZURE_CONTAINER: ${AZURE_CONTAINER}
       AZURE_AD_CLIENT_ID: ${AZURE_AD_CLIENT_ID}
       AZURE_AD_CLIENT_KEY: ${AZURE_AD_CLIENT_KEY}
+      FEEDBACK_API_URL: ${FEEDBACK_API_URL}
+      FEEDBACK_API_KEY: ${FEEDBACK_API_KEY}
     labels:
       io.rancher.container.pull_image: always
       traefik.enable: stack
