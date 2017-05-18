@@ -16,4 +16,5 @@ services:
       traefik.enable: stack
       traefik.domain: ${TRAEFIK_DOMAIN}
       traefik.port: 3333
+      map-public-http: 3333
       io.rancher.container.pull_image: always
