@@ -29,3 +29,4 @@ services:
       traefik.enable: stack
       traefik.domain: ${TRAEFIK_DOMAIN}
       traefik.port: 8000
+      map-public-http: 8000
