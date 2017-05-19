@@ -10,6 +10,7 @@ services:
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASS}
       DB_PORT: 1433
+      DB_FORCE_MIGRATE: ${DB_FORCE_MIGRATE}
       SA_USER: ${SA_USER}
       SA_PASSWORD: ${SA_PASSWORD}
       WAGTAIL_EMAIL: ${WAGTAIL_EMAIL}
