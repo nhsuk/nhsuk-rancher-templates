@@ -28,6 +28,11 @@ catalog:
       label: "DB Password"
       required: true
       type: "string"
+    - variable: "DB_FORCE_MIGRATE"
+      label: "Force run DB migrations? (Y/N)"
+      required: "true"
+      type: "string"
+      default: N
     - variable: "WAGTAIL_USER"
       label: "Username for Wagtail superuser"
       required: true
@@ -82,6 +87,14 @@ catalog:
     - variable: "TRAEFIK_DOMAIN"
       label: "Traefik Domain"
       default: "dev.beta.nhschoices.net"
+      required: true
+      type: "string"
+    - variable: "FEEDBACK_API_URL"
+      label: "Feedback API URL"
+      required: true
+      type: "string"
+    - variable: "FEEDBACK_API_KEY"
+      label: "Feedback API key"
       required: true
       type: "string"
 

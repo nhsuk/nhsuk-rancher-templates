@@ -1,0 +1,5 @@
+name: Vault
+description: |
+  Hashicorp Vault - using Azure as a storage backend
+version: 1.0.0
+category: nhsuk beta
