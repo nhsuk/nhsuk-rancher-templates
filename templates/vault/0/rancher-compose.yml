@@ -1,0 +1,39 @@
+version: '2'
+
+catalog:
+  name: nhsuk_vault
+  version: 1.0.0
+  description: |
+    Hashicorp Vault attached to a Azure backend
+  minimum_rancher_version: v0.59.0
+  questions:
+    - variable: "VAULT_DOMAIN"
+      description: "Publically available Vault domain name"
+      label: "Publically available Vault domain name:"
+      required: true
+      default: "vault.production.beta.nhschoices.net"
+    - variable: "AZURE_ACCOUNT_NAME"
+      description: "Azure Storage Account name"
+      label: "Azure Storage Account name:"
+      required: true
+      default: nhsukvault
+      type: "string"
+    - variable: "AZURE_ACCOUNT_KEY"
+      description: "Azure Storage Account Key"
+      label: "Azure Storage Account Key:"
+      required: true
+      type: "string"
+    - variable: "AZURE_ACCOUNT_CONTAINER"
+      description: "Azure Storage Account container"
+      label: "Azure Storage Account container:"
+      required: true
+      default: "vault"
+      type: "string"
+
+services:
+  vault-ui:
+    scale: 1
+    start_on_create: true
+  vault:
+    scale: 1
+    start_on_create: true
