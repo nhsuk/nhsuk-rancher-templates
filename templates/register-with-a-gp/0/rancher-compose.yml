@@ -2,7 +2,7 @@ version: '2'
 
 catalog:
   name: nhsuk_registry_with_ap
-  version: 1.0.0
+  version: 1.0.1
   description: |
     Conditions
   questions:
@@ -44,13 +44,72 @@ catalog:
       description: "Api host for getAddress.io"
       required: true
       type: "string"
+    - variable: "GP_LOOKUP_API_URL"
+      label: "GP_LOOKUP_API_URL"
+      description: "Api host for gp lookup service"
+      required: true
+      type: "string"
+    - variable: "GP_LOOKUP_API_PORT"
+      label: "GP_LOOKUP_API_PORT"
+      description: "Api port for gp lookup service"
+      required: true
+      type: "string"
+    - variable: "GPLOOKUPAPISSL"
+      label: "GPLOOKUPAPISSL"
+      description: "Is API on SSL"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_REGISTER_GP_TEST"
+      label: "GP_EMAIL_REGISTER_GP_TEST"
+      description: "Email address for test GP"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_OHORAN_PARTNERS"
+      label: "GP_EMAIL_OHORAN_PARTNERS"
+      description: "Email address for O Horan Partners GP"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_PEEL_CROFT_SURGERY"
+      label: "GP_EMAIL_PEEL_CROFT_SURGERY"
+      description: "Email address for Peel Croft Surgery GP"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_PIONEER_MEDICAL_GROUP"
+      label: "GP_EMAIL_PIONEER_MEDICAL_GROUP"
+      description: "Email address for Pioneer Medical group GP"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_ROSEBANK_HEALTH"
+      label: "GP_EMAIL_ROSEBANK_HEALTH"
+      description: "Email address for Rosebank Heath GP"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_THE_WOLDS_PRACTICE"
+      label: "GP_EMAIL_THE_WOLDS_PRACTICE"
+      description: "Email address for The Wolds Practice"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_WALLINGTON_FAMILY_PRACTICE"
+      label: "GP_EMAIL_WALLINGTON_FAMILY_PRACTICE"
+      description: "Email address for Wallington Family Practice"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_BURNS_PRACTICE"
+      label: "GP_EMAIL_BURNS_PRACTICE"
+      description: "Email address for Burns Practice"
+      required: true
+      type: "string"
+    - variable: "GP_EMAIL_HAMPTON_WICK_SURGERY"
+      label: "GP_EMAIL_HAMPTON_WICK_SURGERY"
+      description: "Email address for Hampton Wick surgery"
+      required: true
+      type: "string"
     - variable: "TRAEFIK_DOMAIN"
       label: "TRAEFIK_DOMAIN"
       description: "Domain used to build traefix domain path: {STACK_NAME}.{DOMAIN}"
       required: true
       default: "dev.beta.nhschoices.net"
       type: "string"
-
 services:
 
   register-with-a-gp:
