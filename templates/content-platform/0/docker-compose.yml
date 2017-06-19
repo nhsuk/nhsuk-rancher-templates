@@ -1,5 +1,9 @@
 version: '2'
 
+volumes:
+  static:
+
+
 services:
 
   nginx:
@@ -15,6 +19,9 @@ services:
       traefik.domain: ${TRAEFIK_DOMAIN}
       traefik.port: 80
       io.rancher.container.pull_image: always
+      io.rancher.container.pull_image: always
+    volumes:
+      - content-platform-static:/wagtail/static
 
   wagtail:
     image: nhsuk/content-platform:${CONTENT_PLATFORM_DOCKER_IMAGE_TAG}
@@ -38,3 +45,6 @@ services:
       AZURE_AD_CLIENT_KEY: ${AZURE_AD_CLIENT_KEY}
     labels:
       io.rancher.container.pull_image: always
+      io.rancher.sidekicks: nginx
+    volumes:
+      - content-platform-static:/wagtail/static
